@@ -7,10 +7,9 @@
     <q-separator />
 
     <q-card-section v-for="(value, key) in scheduleStore.schedules" :key="key">
-      <div class="text-h6">{{ value.scheduled_at }}</div>
+      <div>{{ value.scheduled_at }}</div>
       <div>{{ value.scheduable_type }}</div>
       <div>{{ value.details }}</div>
-      <div>{{ `completed: ${value.completed}` }}</div>
     </q-card-section>
   </q-card>
 </template>

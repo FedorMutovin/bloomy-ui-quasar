@@ -17,7 +17,7 @@
       <!-- drawer content -->
     </q-drawer>
 
-    <q-drawer v-model="rightDrawerOpen" side="right" overlay behavior="desktop" bordered>
+    <q-drawer v-model="rightDrawerOpen" side="right" show-if-above behavior="desktop" bordered>
       <SchedulesCard/>
     </q-drawer>
 

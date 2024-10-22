@@ -9,6 +9,7 @@
 
     <q-card-section v-for="(value, key) in goalStore.goals" :key="key">
       <div>{{ value.name }}</div>
+      <div>{{ value.status }}</div>
       <div>{{ value.created_at }}</div>
     </q-card-section>
   </q-card>

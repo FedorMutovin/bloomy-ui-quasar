@@ -17,7 +17,7 @@
       <!-- drawer content -->
     </q-drawer>
 
-    <q-drawer v-model="rightDrawerOpen" side="right" show-if-above behavior="desktop" bordered>
+    <q-drawer v-model="rightDrawerOpen" side="right" overlay behavior="desktop" bordered>
       <SchedulesCard/>
     </q-drawer>
 
@@ -32,5 +32,13 @@
 import { ref } from 'vue'
 import SchedulesCard from 'components/SchedulesCard.vue'
 
-const rightDrawerOpen = ref(true)
+const rightDrawerOpen = ref(false)
+const leftDrawerOpen = ref(false)
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value
+}
+
+const toggleRightDrawer = () => {
+  rightDrawerOpen.value = !rightDrawerOpen.value
+}
 </script>

@@ -1,10 +1,10 @@
 <template>
   <div class="flex">
-    <div class="row">
-      <div class="col">
+    <div class="row justify-center">
+      <div class="col-12 col-md-3 q-pa-md">
         <GoalsCard/>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-3 q-pa-md">
         <WishesCard/>
       </div>
     </div>

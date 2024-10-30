@@ -27,5 +27,10 @@ export default {
   buttons: {
     cancel: 'Cancel',
     save: 'Save'
+  },
+  statuses: {
+    in_progress: 'In Progress',
+    pending: 'Pending',
+    scheduled: 'Scheduled'
   }
 }

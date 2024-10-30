@@ -9,7 +9,7 @@
       <q-item :to="`/goals/${value.id}`" exact clickable v-ripple v-for="(value, key) in goalStore.goals" :key="key">
         <q-item-section>
           <q-item-label>{{ value.name }}</q-item-label>
-          <q-item-label caption>{{ value.status }}</q-item-label>
+          <q-item-label caption>{{ $t(`statuses.${value.status}`)}}</q-item-label>
         </q-item-section>
 
         <q-item-section side top>

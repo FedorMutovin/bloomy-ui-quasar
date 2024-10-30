@@ -9,7 +9,7 @@
           Bloomy
         </q-toolbar-title>
 
-        <q-btn flat round icon="menu" elevated @click="toggleRightDrawer" />
+        <q-btn flat round icon="mdi-calendar-clock-outline" elevated @click="toggleRightDrawer" />
       </q-toolbar>
     </q-header>
 

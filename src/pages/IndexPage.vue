@@ -20,7 +20,7 @@ defineOptions({
 })
 
 import GoalsCard from 'components/goals/GoalsCard.vue'
-import WishesCard from 'components/WishesCard.vue'
+import WishesCard from 'components/wishes/WishesCard.vue'
 import TaskListCard from 'components/tasks/TaskListCard.vue'
 import { onMounted } from 'vue'
 import { useUserStore } from 'stores/user_store'

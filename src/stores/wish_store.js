@@ -16,6 +16,14 @@ export const useWishStore = defineStore('WishStore', {
       })
       this.wishes = response.data
       return response
+    },
+
+    async createWish (data) {
+      const params = {
+        wishes: data
+      }
+      const response = await api.post('/api/v1/wishes', params)
+      return response.data
     }
   }
 })

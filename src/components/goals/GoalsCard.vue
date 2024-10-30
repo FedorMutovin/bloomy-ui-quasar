@@ -2,7 +2,6 @@
   <q-card>
     <q-card-section>
       <div class="text-h6">Goals</div>
-      <div class="text-subtitle2">Когда создаешь цель, будет лучше отразить какой то конкретный, конечный результат(например: Сьездить в Нью-Йорк на день рождения, для этого будет несколько задач, например получение визы, покупка билетов и т.д и в конце можно либо достигнуть результат, либо нет)</div>
     </q-card-section>
 
     <q-separator />
@@ -11,6 +10,9 @@
       <div>{{ value.name }}</div>
       <div>{{ value.status }}</div>
       <div>{{ value.created_at }}</div>
+      <router-link :to="`/goals/${value.id}`">
+        Open
+      </router-link>
     </q-card-section>
   </q-card>
 </template>

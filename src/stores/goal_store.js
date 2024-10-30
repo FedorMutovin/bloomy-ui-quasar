@@ -14,20 +14,12 @@ export const useGoalStore = defineStore('GoalStore', {
           user_id: id
         }
       })
-      this.goals = response.data.map(goal => {
-        const dateFormatted = new Date(goal.created_at)
-        return {
-          ...goal,
-          created_at: dateFormatted.toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          })
-        }
-      })
+      this.goals = response.data
       return response
+    },
+    async findGoalById (goalId) {
+      const response = await api.get(`/api/v1/goals/${goalId}`)
+      return response.data
     }
   }
 })

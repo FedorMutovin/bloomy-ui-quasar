@@ -3,8 +3,8 @@
       <q-expansion-item
         expand-separator
         icon="mdi-book-heart-outline"
-        :label="$t('wishes.card_title')"
-        :caption="$t('wishes.card_description')"
+        :label="$t('cards.wishes.title')"
+        :caption="$t('cards.wishes.description')"
       >
         <q-item clickable v-ripple v-for="(value, key) in wishStore.wishes" :key="key">
           <q-item-section>

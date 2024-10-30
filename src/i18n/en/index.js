@@ -13,11 +13,15 @@ export default {
   cards: {
     wishes: {
       title: 'Wishes',
-      description: 'Slace to capture experiences, dreams, and aspirations you’d like to enjoy or fulfill someday.'
+      description: 'A space to capture experiences, dreams, and aspirations you’d like to enjoy or fulfill someday.'
     },
     goals: {
       title: 'Goals',
-      description: 'Space to define, track, and achieve meaningful milestones and ambitions you want to bring to life.'
+      description: 'A space to define, track, and achieve meaningful milestones and ambitions you want to bring to life.'
+    },
+    tasks: {
+      title: 'Tasks',
+      description: 'A space for managing essential steps and actions that bring you closer to your larger goals, keeping you focused on progress.'
     }
   },
   attributes: {

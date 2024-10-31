@@ -2,10 +2,10 @@
   <div class="flex">
     <div class="row justify-center">
       <div class="col-12 col-md-3 q-pa-md">
-        <GoalListCard/>
+        <WishListCard/>
       </div>
       <div class="col-12 col-md-3 q-pa-md">
-        <WishListCard/>
+        <GoalListCard/>
       </div>
       <div class="col-12 col-md-3 q-pa-md">
         <TaskListCard/>

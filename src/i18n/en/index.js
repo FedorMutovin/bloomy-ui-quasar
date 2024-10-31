@@ -35,7 +35,8 @@ export default {
   },
   buttons: {
     cancel: 'Cancel',
-    save: 'Save'
+    save: 'Save',
+    make_it_goal: 'Make it a Goal'
   },
   statuses: {
     in_progress: 'In Progress',

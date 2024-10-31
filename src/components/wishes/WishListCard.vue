@@ -1,29 +1,33 @@
 <template>
   <ItemListCard
-    :icon="'mdi-clipboard-text-outline'"
-    :resource="'tasks'"
-    :items="taskStore.tasks"
+    :icon="'mdi-notebook-heart-outline'"
+    :resource="'wishes'"
+    :items="wishStore.wishes"
   >
     <template #body="{ item }">
       <q-item-section>
-        <q-item-label>{{ item.name }}</q-item-label>
+        <q-item-label>{{ item.title }}</q-item-label>
         <q-item-label caption>{{ item.description }}</q-item-label>
-        <q-item-label caption>{{ $t(`statuses.${item.status}`)}}</q-item-label>
       </q-item-section>
+    </template>
+
+    <template #form="{ close }">
+      <WishesForm @close="close" />
     </template>
   </ItemListCard>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
-import { useTaskStore } from 'stores/task_store'
+import { useWishStore } from 'stores/wish_store'
 import { useUserStore } from 'stores/user_store'
 import ItemListCard from 'components/ItemListCard.vue'
+import WishesForm from 'components/wishes/WishesForm.vue'
 
-const taskStore = useTaskStore()
+const wishStore = useWishStore()
 const userStore = useUserStore()
 
 onMounted(async () => {
-  await taskStore.getForUser(userStore.id)
+  await wishStore.getForUser(userStore.id)
 })
 </script>

@@ -1,13 +1,12 @@
 <template>
   <ItemListCard
     :icon="'mdi-clipboard-text-outline'"
-    :resource="'tasks'"
-    :items="taskStore.tasks"
+    :resource="'goals'"
+    :items="goalStore.goals"
   >
     <template #body="{ item }">
       <q-item-section>
         <q-item-label>{{ item.name }}</q-item-label>
-        <q-item-label caption>{{ item.description }}</q-item-label>
         <q-item-label caption>{{ $t(`statuses.${item.status}`)}}</q-item-label>
       </q-item-section>
     </template>
@@ -16,14 +15,15 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { useTaskStore } from 'stores/task_store'
+import { useGoalStore } from 'stores/goal_store'
 import { useUserStore } from 'stores/user_store'
 import ItemListCard from 'components/ItemListCard.vue'
 
-const taskStore = useTaskStore()
+const goalStore = useGoalStore()
 const userStore = useUserStore()
 
 onMounted(async () => {
-  await taskStore.getForUser(userStore.id)
+  await goalStore.getForUser(userStore.id)
 })
+
 </script>

@@ -35,7 +35,7 @@ const goal = ref(null)
 const goalStore = useGoalStore()
 
 onBeforeMount(async () => {
-  goal.value = await goalStore.findGoalById(props.goalId)
+  goal.value = await goalStore.findById(props.goalId)
 })
 
 </script>

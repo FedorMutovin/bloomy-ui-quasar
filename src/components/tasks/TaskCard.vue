@@ -10,7 +10,7 @@
       <div>{{ task.name }}</div>
       <div>{{ task.description }}</div>
       <div>{{ task.status }}</div>
-      <div>{{ task.created_at }}</div>
+      <div>{{ task.initiated_at }}</div>
     </q-card-section>
   </q-card>
 </template>

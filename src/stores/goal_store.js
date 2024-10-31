@@ -17,7 +17,7 @@ export const useGoalStore = defineStore('GoalStore', {
       this.goals = response.data
       return response
     },
-    async findGoalById (goalId) {
+    async findById (goalId) {
       const response = await api.get(`/api/v1/goals/${goalId}`)
       return response.data
     }

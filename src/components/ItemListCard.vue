@@ -9,12 +9,12 @@
       <q-item :to="`/${resource}/${item.id}`" clickable v-ripple v-for="item in items" :key="item.id">
         <slot name="body" :item="item" />
         <q-item-section side top>
-          <q-item-label caption>{{ $t('cards.priority') }}</q-item-label>
+          <q-item-label caption>{{ $t('attributes.priority') }}</q-item-label>
           <div class="text-secondary">
             <q-icon
               v-for="index in 5"
               :key="index"
-              :name="index <= 5 - item.priority ? 'mdi-seed' : 'mdi-seed-outline'"
+              :name="index <= 5 - item.priority ? 'mdi-leaf-circle' : 'mdi-leaf-circle-outline'"
             />
           </div>
         </q-item-section>

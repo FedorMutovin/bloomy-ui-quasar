@@ -22,12 +22,16 @@ export default {
     tasks: {
       title: 'Tasks',
       description: 'A space for managing essential steps and actions that bring you closer to your larger goals, keeping you focused on progress.'
-    },
-    priority: 'Priority:'
+    }
   },
   attributes: {
     title: 'Title',
-    description: 'Description'
+    description: 'Description',
+    status: 'Status',
+    name: 'Name',
+    started_at: 'Started',
+    priority: 'Priority',
+    initialized_at: 'Initialized At'
   },
   buttons: {
     cancel: 'Cancel',

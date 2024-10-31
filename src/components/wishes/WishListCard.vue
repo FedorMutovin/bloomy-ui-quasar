@@ -12,7 +12,7 @@
     </template>
 
     <template #form="{ close }">
-      <WishesForm @close="close" />
+      <WishForm @close="close" />
     </template>
   </ItemListCard>
 </template>
@@ -22,7 +22,7 @@ import { onMounted } from 'vue'
 import { useWishStore } from 'stores/wish_store'
 import { useUserStore } from 'stores/user_store'
 import ItemListCard from 'components/ItemListCard.vue'
-import WishesForm from 'components/wishes/WishesForm.vue'
+import WishForm from 'components/wishes/WishForm.vue'
 
 const wishStore = useWishStore()
 const userStore = useUserStore()

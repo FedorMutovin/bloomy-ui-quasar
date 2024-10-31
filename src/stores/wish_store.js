@@ -24,6 +24,11 @@ export const useWishStore = defineStore('WishStore', {
       }
       const response = await api.post('/api/v1/wishes', params)
       return response.data
+    },
+
+    async findById (id) {
+      const response = await api.get(`/api/v1/wishes/${id}`)
+      return response.data
     }
   }
 })

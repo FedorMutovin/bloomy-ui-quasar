@@ -6,7 +6,7 @@
   >
     <template #body="{ item }">
       <q-item-section>
-        <q-item-label>{{ item.title }}</q-item-label>
+        <q-item-label>{{ item.name }}</q-item-label>
         <q-item-label caption>{{ item.description }}</q-item-label>
       </q-item-section>
     </template>

@@ -1,5 +1,5 @@
 <template>
-  <GoalForm :goalId="goalId"/>
+  <GoalCard :goalId="goalId"/>
 </template>
 
 <script setup>
@@ -11,5 +11,5 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const goalId = route.params.id
 
-import GoalForm from 'components/goals/GoalForm.vue'
+import GoalCard from 'components/goals/GoalCard.vue'
 </script>

@@ -4,7 +4,7 @@
       <q-card-section>
         <div class="row items-center justify-between">
           <div v-if="wish" class="col-md-6 text-h6">
-            {{ wish.title }}
+            {{ wish.name }}
           </div>
           <q-rating
             v-model="displayPriority"
@@ -29,11 +29,16 @@
           {{ wish.description }}
         </div>
       </q-card-section>
-      <q-btn :loading="loading" color="accent" :label="$t('buttons.make_it_goal')" class="q-ma-sm" />
+      <q-btn @click="openGoalForm = true" color="accent" :label="$t('buttons.make_it_goal')" class="q-ma-sm" />
     </q-card>
+    <q-dialog v-model="openGoalForm" persistent>
+      <GoalForm @close="openGoalForm = false" :event-relation="eventRelation" :description="wish.description" :name="wish.name" :priority="wish.priority"  />
+    </q-dialog>
   </div>
 </template>
 <script setup>
+
+import GoalForm from 'components/goals/GoalForm.vue'
 
 const props = defineProps({
   wishId: {
@@ -48,7 +53,8 @@ import { useWishStore } from 'stores/wish_store'
 const wish = ref(null)
 const wishStore = useWishStore()
 const maxPriority = 5
-const loading = ref(false)
+// const loading = ref(false)
+const openGoalForm = ref(false)
 const displayPriority = computed({
   get () {
     if (wish.value) {
@@ -61,6 +67,16 @@ const displayPriority = computed({
       wish.value.priority = maxPriority - value
     }
   }
+})
+
+const eventRelation = computed(() => {
+  if (wish.value) {
+    return {
+      type: 'Wish',
+      name: wish.value.name
+    }
+  }
+  return null
 })
 
 onBeforeMount(async () => {

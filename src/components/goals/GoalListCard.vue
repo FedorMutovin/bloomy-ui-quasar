@@ -1,6 +1,6 @@
 <template>
   <ItemListCard
-    :icon="'mdi-clipboard-text-outline'"
+    :icon="'mdi-sprout-outline'"
     :resource="'goals'"
     :items="goalStore.goals"
   >

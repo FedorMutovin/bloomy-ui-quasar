@@ -20,6 +20,13 @@ export const useGoalStore = defineStore('GoalStore', {
     async findById (goalId) {
       const response = await api.get(`/api/v1/goals/${goalId}`)
       return response.data
+    },
+    async create (data) {
+      const params = {
+        goal: data
+      }
+      const response = await api.post('/api/v1/goals', params)
+      return response.data
     }
   }
 })

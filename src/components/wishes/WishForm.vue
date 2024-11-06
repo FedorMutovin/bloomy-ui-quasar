@@ -5,7 +5,7 @@
     </q-card-section>
 
     <q-card-section class="q-pt-none row">
-      <q-input clearable color="accent" :label="$t('attributes.title')" v-model="title" autofocus @keyup.enter="submitForm" class="q-ma-sm col-12" />
+      <q-input clearable color="accent" :label="$t('attributes.name')" v-model="name" autofocus @keyup.enter="submitForm" class="q-ma-sm col-12" />
       <q-input clearable color="accent" autogrow :label="$t('attributes.description')" v-model="description" @keyup.enter="submitForm" class="q-ma-sm col-12" />
       <div class="col-12 col-md-6">
         <q-item-label class="q-mt-md q-ml-sm" caption>{{ $t('attributes.priority') }}</q-item-label>
@@ -19,7 +19,7 @@
         />
       </div>
       <div class="col-12 col-md-6">
-        <q-item-label class="q-mt-md q-ml-sm" caption>{{ $t('attributes.initialized_at') }}</q-item-label>
+        <q-item-label class="q-mt-md q-ml-sm" caption>{{ $t('attributes.initiated_at') }}</q-item-label>
         <DateTimePicker v-model="initiatedAt" class="q-ma-sm"/>
       </div>
     </q-card-section>
@@ -39,7 +39,7 @@ import DateTimePicker from 'components/DateTimePicker.vue'
 const wishStore = useWishStore()
 const emit = defineEmits(['close'])
 
-const title = ref('')
+const name = ref('')
 const description = ref('')
 const priority = ref(4)
 const maxPriority = 5
@@ -59,12 +59,12 @@ function closeForm () {
 async function submitForm () {
   loading.value = true
   const params = {
-    title: title.value,
+    name: name.value,
     description: description.value,
     priority: priority.value,
     initiated_at: initiatedAt.value
   }
-  await wishStore.createWish(params)
+  await wishStore.create(params)
 
   closeForm()
 }

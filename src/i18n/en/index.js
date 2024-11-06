@@ -7,7 +7,19 @@ export default {
     create: {
       wishes: {
         title: 'Create a New Wish'
-      }
+      },
+      goals: {
+        title: 'Create a New Goal',
+        action_steps: 'Related Tasks',
+        action_steps_tip: 'To make this goal achievable, be sure to add at least one task that will help you take the first step toward reaching it!',
+        add_task: 'Add a new task'
+      },
+      tasks: {
+        title: 'Create a New Task'
+      },
+      backdate: 'Backdate',
+      backdate_tip: 'If this event happened in the past, you can set a specific date and time to reflect that. By default, the current date and time are applied.',
+      based_on: 'Based On'
     }
   },
   cards: {
@@ -25,13 +37,12 @@ export default {
     }
   },
   attributes: {
-    title: 'Title',
     description: 'Description',
     status: 'Status',
     name: 'Name',
     started_at: 'Started',
     priority: 'Priority',
-    initialized_at: 'Initialized At'
+    initiated_at: 'Initiated At'
   },
   buttons: {
     cancel: 'Cancel',
@@ -41,6 +52,7 @@ export default {
   statuses: {
     in_progress: 'In Progress',
     pending: 'Pending',
-    scheduled: 'Scheduled'
+    scheduled: 'Scheduled',
+    postponed: 'Postponed'
   }
 }

@@ -18,9 +18,9 @@ export const useWishStore = defineStore('WishStore', {
       return response
     },
 
-    async createWish (data) {
+    async create (data) {
       const params = {
-        wishes: data
+        wish: data
       }
       const response = await api.post('/api/v1/wishes', params)
       return response.data

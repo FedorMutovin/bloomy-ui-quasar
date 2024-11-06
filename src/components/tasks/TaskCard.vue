@@ -15,7 +15,6 @@
   </q-card>
 </template>
 <script setup>
-import { defineProps } from 'vue'
 defineProps({
   task: {
     type: Object,

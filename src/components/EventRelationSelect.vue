@@ -3,9 +3,12 @@
     v-model="event"
     stack-label
     color="accent"
-    :options="eventStore.events"
+    :options="options"
     :label="$t('forms.create.based_on')"
     :display-value="displayValue"
+    @filter="filterFn"
+    use-input
+    behavior="menu"
     @update:model-value="emitSelectedEvent"
   >
     <template v-slot:append>
@@ -45,6 +48,7 @@ const iconMap = {
   Goal: 'mdi-sprout-outline',
   Wish: 'mdi-notebook-heart-outline'
 }
+const options = ref([])
 
 function emitSelectedEvent (newEvent) {
   event.value = newEvent
@@ -54,6 +58,20 @@ function emitSelectedEvent (newEvent) {
 function clearEvent () {
   event.value = null
   emit('update:selected-event', null)
+}
+
+function filterFn (val, update) {
+  if (val === '') {
+    update(() => {
+      options.value = eventStore.events
+    })
+    return
+  }
+
+  update(() => {
+    const needle = val.toLowerCase()
+    options.value = eventStore.events.filter(event => event.name.toLowerCase().includes(needle))
+  })
 }
 
 const displayValue = computed(() => {

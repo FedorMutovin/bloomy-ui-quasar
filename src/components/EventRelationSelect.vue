@@ -4,8 +4,9 @@
     stack-label
     color="accent"
     :options="options"
-    :label="$t('forms.create.based_on')"
+    :label="$t('forms.create.trigger.triggered_by')"
     :display-value="displayValue"
+    aria-placeholder="log"
     @filter="filterFn"
     use-input
     behavior="menu"
@@ -27,6 +28,13 @@
         <q-item-section>
           <q-item-label>{{ scope.opt.name }}</q-item-label>
           <q-item-label caption>{{ scope.opt.event_type }}</q-item-label>
+        </q-item-section>
+      </q-item>
+    </template>
+    <template v-slot:no-option>
+      <q-item>
+        <q-item-section>
+          {{ $t('forms.create.trigger.no_option') }}
         </q-item-section>
       </q-item>
     </template>

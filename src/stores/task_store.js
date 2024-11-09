@@ -19,7 +19,7 @@ export const useTaskStore = defineStore('TaskStore', {
     },
     async create (data) {
       const params = {
-        tasks: data
+        task: data
       }
       const response = await api.post('/api/v1/tasks', params)
       return response.data

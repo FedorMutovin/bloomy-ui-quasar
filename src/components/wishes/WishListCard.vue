@@ -1,5 +1,5 @@
 <template>
-  <ItemListCard
+  <EventListCard
     :icon="'mdi-notebook-heart-outline'"
     :resource="'wishes'"
     :items="wishStore.wishes"
@@ -14,14 +14,14 @@
     <template #form="{ close }">
       <WishForm @close="close" />
     </template>
-  </ItemListCard>
+  </EventListCard>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
 import { useWishStore } from 'stores/wish_store'
 import { useUserStore } from 'stores/user_store'
-import ItemListCard from 'components/ItemListCard.vue'
+import EventListCard from 'components/EventListCard.vue'
 import WishForm from 'components/wishes/WishForm.vue'
 
 const wishStore = useWishStore()

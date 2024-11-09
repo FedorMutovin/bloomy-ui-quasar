@@ -1,5 +1,5 @@
 <template>
-  <ItemListCard
+  <EventListCard
     :icon="'mdi-sprout-outline'"
     :resource="'goals'"
     :items="goalStore.goals"
@@ -7,17 +7,23 @@
     <template #body="{ item }">
       <q-item-section>
         <q-item-label>{{ item.name }}</q-item-label>
+        <q-item-label caption>{{ item.description }}</q-item-label>
         <q-item-label caption>{{ $t(`statuses.${item.status}`)}}</q-item-label>
       </q-item-section>
     </template>
-  </ItemListCard>
+
+    <template #form="{ close }">
+      <GoalForm @close="close" />
+    </template>
+  </EventListCard>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
 import { useGoalStore } from 'stores/goal_store'
 import { useUserStore } from 'stores/user_store'
-import ItemListCard from 'components/ItemListCard.vue'
+import EventListCard from 'components/EventListCard.vue'
+import GoalForm from 'components/goals/GoalForm.vue'
 
 const goalStore = useGoalStore()
 const userStore = useUserStore()

@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <div class="row justify-center">
-      <div class="col-12 q-pa-md">
+      <div class="col-12">
         <EverydayQuotesList/>
       </div>
       <div class="col-12 col-md-3 q-pa-md">

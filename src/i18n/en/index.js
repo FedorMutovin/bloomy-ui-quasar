@@ -19,7 +19,10 @@ export default {
       },
       backdate: 'Backdate',
       backdate_tip: 'If this event happened in the past, you can set a specific date and time to reflect that. By default, the current date and time are applied.',
-      based_on: 'Based On'
+      trigger: {
+        triggered_by: 'Triggered By',
+        no_option: 'No events yet! Start creating your first one.'
+      }
     }
   },
   cards: {
@@ -47,7 +50,8 @@ export default {
   buttons: {
     cancel: 'Cancel',
     save: 'Save',
-    make_it_goal: 'Make it a Goal'
+    make_it_goal: 'Make it a Goal',
+    remove: 'Remove'
   },
   statuses: {
     in_progress: 'In Progress',

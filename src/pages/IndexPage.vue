@@ -1,6 +1,9 @@
 <template>
   <div class="flex">
     <div class="row justify-center">
+      <div class="col-12 q-pa-md">
+        <EverydayQuotesList/>
+      </div>
       <div class="col-12 col-md-3 q-pa-md">
         <WishListCard/>
       </div>
@@ -15,6 +18,8 @@
 </template>
 
 <script setup>
+import EverydayQuotesList from 'components/EverydayQuotesList.vue'
+
 defineOptions({
   name: 'IndexPage'
 })

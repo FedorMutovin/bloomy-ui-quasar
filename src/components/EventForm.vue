@@ -156,20 +156,24 @@ function closeForm () {
 }
 
 async function submitForm () {
-  // loading.value = true
+  loading.value = true
   if (Object.keys(extraFields.value).length > 0) {
     Object.assign(localEvent, extraFields.value)
   }
 
-  console.log('initiatedAt', initiatedAt.value)
+  if (!localEvent.description) {
+    delete localEvent.description
+  }
+
   localEvent.initiated_at = getUTCDate(initiatedAt.value)
   const store = formStoresMap[localEventType.value]
-  console.log(store)
 
-  console.log(localEvent)
-  // await store.create(localEvent)
-  // loading.value = false
-  // closeForm()
+  console.log('localEvent', localEvent)
+  console.log('store', store)
+
+  await store.create(localEvent)
+  loading.value = false
+  closeForm()
 }
 
 function handleSelectedEvent (event) {

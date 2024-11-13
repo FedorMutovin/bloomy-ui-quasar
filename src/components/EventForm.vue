@@ -168,9 +168,6 @@ async function submitForm () {
   localEvent.initiated_at = getUTCDate(initiatedAt.value)
   const store = formStoresMap[localEventType.value]
 
-  console.log('localEvent', localEvent)
-  console.log('store', store)
-
   await store.create(localEvent)
   loading.value = false
   closeForm()

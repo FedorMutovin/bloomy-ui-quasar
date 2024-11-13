@@ -3,9 +3,24 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: 'goals/:id', component: () => import('pages/GoalPage.vue') },
-      { path: 'wishes/:id', component: () => import('pages/WishPage.vue') }
+      {
+        path: 'core',
+        component: () => import('pages/CorePage.vue'),
+        children: [
+          {
+            path: 'wishes',
+            component: () => import('pages/core/WishesPage.vue'),
+            children: [
+              { path: ':id', component: () => import('pages/core/wishes/WishPage.vue') }
+            ]
+          },
+          { path: 'goals', component: () => import('pages/core/GoalsPage.vue') },
+          { path: 'tasks', component: () => import('pages/core/TasksPage.vue') },
+          { path: 'actions', component: () => import('pages/core/ActionsPage.vue') }
+        ]
+      },
+      { path: 'interests', component: () => import('pages/InterestPage.vue') }
+      // { path: 'goals/:id', component: () => import('pages/GoalPage.vue') },
     ]
   },
 

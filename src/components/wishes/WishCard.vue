@@ -29,7 +29,9 @@
           {{ wish.description }}
         </div>
       </q-card-section>
-      <q-btn @click="openEventForm = true" color="accent" :label="$t('forms.wishes.activate.buttons.action')" class="q-ma-sm" />
+      <q-card-actions>
+        <q-btn @click="openEventForm = true" push color="primary" :label="$t('forms.wishes.activate.buttons.action')" class="q-ma-sm" />
+      </q-card-actions>
     </q-card>
     <q-dialog v-model="openEventForm" persistent>
       <EventForm @close="openEventForm = false" :header="$t(`forms.wishes.activate.header`)" :trigger-id="wish.id"/>

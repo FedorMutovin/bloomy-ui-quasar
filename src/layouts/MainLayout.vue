@@ -21,77 +21,61 @@
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
-
-      :mini="!leftDrawerOpen || miniState"
-      @click.capture="drawerClick"
-
       :width="200"
       :breakpoint="500"
       bordered
     >
-      <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
-        <q-list padding>
-          <q-item active clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="mdi-account-arrow-up-outline" />
-            </q-item-section>
+      <q-scroll-area class="fit">
+        <q-list>
 
-            <q-item-section>
-              Core
-            </q-item-section>
-          </q-item>
+          <template v-for="(menuItem, index) in menuList" :key="index">
+            <q-item :to="menuItem.path" clickable :active="menuItem.label === 'Core'" v-ripple>
+              <q-item-section avatar>
+                <q-icon :name="menuItem.icon" />
+              </q-item-section>
+              <q-item-section>
+                {{ menuItem.label }}
+              </q-item-section>
+            </q-item>
+            <q-separator :key="'sep' + index"  v-if="menuItem.separator" />
+          </template>
 
-<!--          <q-item clickable v-ripple>-->
-<!--            <q-item-section avatar>-->
-<!--              <q-icon name="send" />-->
-<!--            </q-item-section>-->
-
-<!--            <q-item-section>-->
-<!--              Send-->
-<!--            </q-item-section>-->
-<!--          </q-item>-->
-
-<!--          <q-item clickable v-ripple>-->
-<!--            <q-item-section avatar>-->
-<!--              <q-icon name="drafts" />-->
-<!--            </q-item-section>-->
-
-<!--            <q-item-section>-->
-<!--              Drafts-->
-<!--            </q-item-section>-->
-<!--          </q-item>-->
         </q-list>
       </q-scroll-area>
-      <div class="q-mini-drawer-hide absolute" style="top: 15px; right: -17px">
-        <q-btn
-          dense
-          round
-          unelevated
-          color="accent"
-          icon="chevron_left"
-          @click="miniState = true"
-        />
-      </div>
     </q-drawer>
 
     <q-drawer v-model="rightDrawerOpen" side="right" :width="250" behavior="desktop" bordered>
       <SchedulesCard/>
     </q-drawer>
 
-    <q-page-container class="bg-grey-3 window-height">
+    <q-page-container class="bg-grey-3">
       <router-view />
     </q-page-container>
-
   </q-layout>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import SchedulesCard from 'components/schedules/SchedulesCard.vue'
+import { useUserStore } from 'stores/user_store'
 
+const userStore = useUserStore()
 const rightDrawerOpen = ref(false)
 const leftDrawerOpen = ref(true)
-const miniState = ref(false)
+const menuList = [
+  {
+    icon: 'mdi-run-fast',
+    label: 'Core',
+    separator: false,
+    path: '/core'
+  },
+  {
+    icon: 'mdi-gamepad-variant-outline',
+    label: 'Interests',
+    separator: false,
+    path: '/interests'
+  }
+]
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
@@ -100,16 +84,9 @@ const toggleRightDrawer = () => {
   rightDrawerOpen.value = !rightDrawerOpen.value
 }
 
-function drawerClick (e) {
-  // if in "mini" state and user
-  // click on drawer, we switch it to "normal" mode
-  if (miniState.value) {
-    miniState.value = false
-
-    // notice we have registered an event with capture flag;
-    // we need to stop further propagation as this click is
-    // intended for switching drawer to "normal" mode only
-    e.stopPropagation()
+onMounted(async () => {
+  if (!userStore.id) {
+    await userStore.getCurrent()
   }
-}
+})
 </script>

@@ -27,7 +27,7 @@
     </template>
     <q-card-section class="row">
       <EventForm
-        resource="tasks"
+        :header="$t(`forms.create.tasks.title`)"
         v-for="(_, index) in tasks"
         :key="index"
         v-model="tasks[index]"
@@ -46,6 +46,7 @@
 <script setup>
 import { ref } from 'vue'
 import EventForm from 'components/EventForm.vue'
+import { getFormattedDate } from 'src/utils/formattedDate'
 
 const emit = defineEmits(['update:tasks'])
 const tasks = ref([])
@@ -55,7 +56,7 @@ function addTask () {
     name: '',
     description: '',
     priority: 4,
-    initiated_at: new Date().toISOString().slice(0, 16).replace('T', ' ')
+    initiated_at: getFormattedDate()
   })
   emit('update:tasks', tasks.value)
 }

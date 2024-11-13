@@ -1,7 +1,7 @@
 <template>
   <EventListCard
     :icon="'mdi-clipboard-text-outline'"
-    :resource="'tasks'"
+    resource="tasks"
     :items="taskStore.tasks"
   >
     <template #body="{ item }">

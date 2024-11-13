@@ -28,6 +28,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import { getFormattedDate } from 'src/utils/formattedDate'
 
 const props = defineProps({
   modelValue: {
@@ -38,7 +39,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const date = ref(props.modelValue || new Date().toISOString().slice(0, 16).replace('T', ' '))
+const date = ref(props.modelValue || getFormattedDate())
 
 function onInput (value) {
   date.value = value

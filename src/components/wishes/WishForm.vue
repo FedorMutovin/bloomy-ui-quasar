@@ -1,7 +1,7 @@
 <template>
   <q-card>
     <q-card-section>
-      <div class="text-h6">{{ $t("forms.create.wishes.title") }}</div>
+      <div class="text-h6">{{ $t("forms.wishes.create.title") }}</div>
     </q-card-section>
 
     <q-card-section class="q-pt-none row">

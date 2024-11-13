@@ -4,7 +4,6 @@
       expand-separator
       :icon="icon"
       :label="$t(`cards.${resource}.title`)"
-      :caption="$t(`cards.${resource}.description`)"
     >
       <q-item :to="`/${resource}/${item.id}`" clickable v-ripple v-for="item in items" :key="item.id">
         <slot name="body" :item="item" />

@@ -5,13 +5,13 @@ export const useUserStore = defineStore('UserStore', {
   state: () => {
     return {
       id: null,
-      email: null
+      email: null,
+      timezone: null
     }
   },
   actions: {
     async getCurrent () {
       const response = await api.get('/api/v1/users/current')
-      console.log(response.data)
       this.setUser(response.data)
       return response
     },

@@ -3,18 +3,19 @@
     v-model="event"
     stack-label
     color="accent"
+    :readonly="triggerId !== null"
     :options="options"
-    :label="$t('forms.create.trigger.triggered_by')"
+    :label="$t('forms.create.trigger.label')"
     :display-value="displayValue"
-    aria-placeholder="log"
     @filter="filterFn"
     use-input
     behavior="menu"
     @update:model-value="emitSelectedEvent"
+    :hint="$t('forms.create.trigger.info')"
   >
     <template v-slot:append>
       <q-icon
-        v-if="event !== null"
+        v-if="event !== null && triggerId !== null"
         class="cursor-pointer"
         name="clear"
         @click.stop.prevent="clearEvent"
@@ -23,7 +24,7 @@
     <template v-slot:option="scope">
       <q-item v-bind="scope.itemProps">
         <q-item-section avatar>
-          <q-icon :name="iconMap[scope.opt.event_type]" />
+          <q-icon :name="eventTypeStore.getIconByEventName(scope.opt.event_type)" />
         </q-item-section>
         <q-item-section>
           <q-item-label>{{ scope.opt.name }}</q-item-label>
@@ -44,18 +45,21 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue'
 import { useEventStore } from 'stores/event_store'
+import { useEventTypeStore } from 'stores/event_type_store'
 import { useUserStore } from 'stores/user_store'
 const eventStore = useEventStore()
+const eventTypeStore = useEventTypeStore()
 const userStore = useUserStore()
 
-const emit = defineEmits(['update:selected-event'])
+const props = defineProps({
+  triggerId: {
+    type: String,
+    default: null
+  }
+})
 
+const emit = defineEmits(['update:selected-event'])
 const event = ref(null)
-const iconMap = {
-  Task: 'mdi-clipboard-text-outline',
-  Goal: 'mdi-sprout-outline',
-  Wish: 'mdi-notebook-heart-outline'
-}
 const options = ref([])
 
 function emitSelectedEvent (newEvent) {
@@ -88,5 +92,9 @@ const displayValue = computed(() => {
 
 onMounted(async () => {
   await eventStore.getForUser(userStore.id)
+  if (props.triggerId) {
+    const selectedEvent = eventStore.events.find(ev => ev.id === props.triggerId)
+    event.value = selectedEvent || null
+  }
 })
 </script>

@@ -1,7 +1,7 @@
 <template>
   <EventListCard
     :icon="'mdi-notebook-heart-outline'"
-    :resource="'wishes'"
+    resource="wishes"
     :items="wishStore.wishes"
   >
     <template #body="{ item }">

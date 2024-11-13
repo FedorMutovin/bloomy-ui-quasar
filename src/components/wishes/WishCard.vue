@@ -29,16 +29,14 @@
           {{ wish.description }}
         </div>
       </q-card-section>
-      <q-btn @click="openGoalForm = true" color="accent" :label="$t('buttons.make_it_goal')" class="q-ma-sm" />
+      <q-btn @click="openEventForm = true" color="accent" :label="$t('forms.wishes.activate.buttons.action')" class="q-ma-sm" />
     </q-card>
-    <q-dialog v-model="openGoalForm" persistent>
-      <GoalForm @close="openGoalForm = false" :event-relation="eventRelation" :description="wish.description" :name="wish.name" :priority="wish.priority"  />
+    <q-dialog v-model="openEventForm" persistent>
+      <EventForm @close="openEventForm = false" :header="$t(`forms.wishes.activate.header`)" :trigger-id="wish.id"/>
     </q-dialog>
   </div>
 </template>
 <script setup>
-
-import GoalForm from 'components/goals/GoalForm.vue'
 
 const props = defineProps({
   wishId: {
@@ -49,12 +47,12 @@ const props = defineProps({
 
 import { ref, onBeforeMount, computed } from 'vue'
 import { useWishStore } from 'stores/wish_store'
+import EventForm from 'components/EventForm.vue'
 
 const wish = ref(null)
 const wishStore = useWishStore()
 const maxPriority = 5
-// const loading = ref(false)
-const openGoalForm = ref(false)
+const openEventForm = ref(false)
 const displayPriority = computed({
   get () {
     if (wish.value) {
@@ -67,16 +65,6 @@ const displayPriority = computed({
       wish.value.priority = maxPriority - value
     }
   }
-})
-
-const eventRelation = computed(() => {
-  if (wish.value) {
-    return {
-      type: 'Wish',
-      name: wish.value.name
-    }
-  }
-  return null
 })
 
 onBeforeMount(async () => {

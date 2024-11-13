@@ -4,24 +4,53 @@ export default {
   },
   success: 'Success',
   forms: {
-    create: {
-      wishes: {
-        title: 'Create a New Wish'
+    wishes: {
+      activate: {
+        header: 'Take the First Step and Create a Related Action!',
+        buttons: {
+          action: 'Activate'
+        }
       },
-      goals: {
+      create: {
+        title: 'Create a New Wish'
+      }
+    },
+    goals: {
+      create: {
         title: 'Create a New Goal',
         action_steps: 'Related Tasks',
         action_steps_tip: 'To make this goal achievable, be sure to add at least one task that will help you take the first step toward reaching it!',
         add_task: 'Add a new task'
-      },
-      tasks: {
+      }
+    },
+    tasks: {
+      create: {
         title: 'Create a New Task'
-      },
-      backdate: 'Backdate',
-      backdate_tip: 'If this event happened in the past, you can set a specific date and time to reflect that. By default, the current date and time are applied.',
+      }
+    },
+    actions: {
+      create: {
+        title: 'Create a New Action'
+      }
+    },
+    create: {
       trigger: {
-        triggered_by: 'Triggered By',
+        info: 'A trigger is an event or action that leads to another event, helping you link them together as part of your progress.',
+        label: 'Triggered By',
         no_option: 'No events yet! Start creating your first one.'
+      },
+      event_type: {
+        info: 'Choose the category that best describes your event.',
+        label: 'Event Type'
+      },
+      event_details_header: 'Event Details',
+      attributes: {
+        start_immediately: 'Start Immediately',
+        schedule: 'Schedule Event'
+      },
+      hints: {
+        start_immediately_hint: 'Check this box to start the event right away and set its status to ‘In Progress’.',
+        schedule_hint: 'Check this box to set a scheduled start time for the event.'
       }
     }
   },
@@ -37,6 +66,10 @@ export default {
     tasks: {
       title: 'Tasks',
       description: 'A space for managing essential steps and actions that bring you closer to your larger goals, keeping you focused on progress.'
+    },
+    actions: {
+      title: 'Actions',
+      description: 'A record of completed activities, capturing what you’ve done and the choices you’ve made along the way.'
     }
   },
   attributes: {
@@ -45,7 +78,14 @@ export default {
     name: 'Name',
     started_at: 'Started',
     priority: 'Priority',
-    initiated_at: 'Initiated At'
+    initiated_at: 'Initiated At',
+    schedule_at: 'Schedule At',
+    hints: {
+      name: 'Give your event a name that stands out!',
+      description: 'Add some details to make this event more meaningful.',
+      priority: 'Priority',
+      initiated_at: 'Initiated At'
+    }
   },
   buttons: {
     cancel: 'Cancel',

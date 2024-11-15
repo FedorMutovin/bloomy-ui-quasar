@@ -14,13 +14,18 @@ const routes = [
               { path: ':id', component: () => import('pages/core/wishes/WishPage.vue') }
             ]
           },
-          { path: 'goals', component: () => import('pages/core/GoalsPage.vue') },
+          {
+            path: 'goals',
+            component: () => import('pages/core/GoalsPage.vue'),
+            children: [
+              { path: ':id', component: () => import('pages/core/goals/GoalPage.vue') }
+            ]
+          },
           { path: 'tasks', component: () => import('pages/core/TasksPage.vue') },
           { path: 'actions', component: () => import('pages/core/ActionsPage.vue') }
         ]
       },
       { path: 'interests', component: () => import('pages/InterestPage.vue') }
-      // { path: 'goals/:id', component: () => import('pages/GoalPage.vue') },
     ]
   },
 

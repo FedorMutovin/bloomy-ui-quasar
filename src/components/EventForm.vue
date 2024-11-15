@@ -96,11 +96,13 @@ import GoalFields from 'components/goals/forms/GoalFields.vue'
 import { useTaskStore } from 'stores/task_store'
 import { useGoalStore } from 'stores/goal_store'
 import { useActionStore } from 'stores/action_store'
+import { useWishStore } from 'stores/wish_store'
 import { getFormattedDate, getUTCDate } from 'src/utils/formattedDate'
 
 const taskStore = useTaskStore()
 const goalStore = useGoalStore()
 const actionStore = useActionStore()
+const wishStore = useWishStore()
 const emit = defineEmits(['close', 'submit', 'update:modelValue'])
 
 const props = defineProps({
@@ -126,7 +128,8 @@ const formFieldsComponentMap = {
 const formStoresMap = {
   Task: taskStore,
   Goal: goalStore,
-  Action: actionStore
+  Action: actionStore,
+  Wish: wishStore
 }
 
 const extraFields = ref({})

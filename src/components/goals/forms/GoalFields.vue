@@ -33,6 +33,7 @@ function updateLocalEventData () {
 
   if (startImmediately.value) {
     updateData.started_at = getUTCDate()
+    updateData.status = 'in_progress'
   }
 
   emit('updateLocalEvent', updateData)

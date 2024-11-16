@@ -98,5 +98,8 @@ export default {
     pending: 'Pending',
     scheduled: 'Scheduled',
     postponed: 'Postponed'
+  },
+  messages: {
+    positive: 'Event has been created successfully.'
   }
 }

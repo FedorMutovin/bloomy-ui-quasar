@@ -88,6 +88,8 @@
 
 <script setup>
 import { computed, reactive, ref } from 'vue'
+import { useQuasar } from 'quasar'
+import { useI18n } from 'vue-i18n'
 import EventRelationSelect from 'components/EventRelationSelect.vue'
 import EventTypeSelect from 'components/EventTypeSelect.vue'
 import DateTimePicker from 'components/DateTimePicker.vue'
@@ -99,6 +101,8 @@ import { useActionStore } from 'stores/action_store'
 import { useWishStore } from 'stores/wish_store'
 import { getFormattedDate, getUTCDate } from 'src/utils/formattedDate'
 
+const $q = useQuasar()
+const { t } = useI18n()
 const taskStore = useTaskStore()
 const goalStore = useGoalStore()
 const actionStore = useActionStore()
@@ -159,21 +163,45 @@ function closeForm () {
 }
 
 async function submitForm () {
-  loading.value = true
-  if (Object.keys(extraFields.value).length > 0) {
-    Object.assign(localEvent, extraFields.value)
+  try {
+    loading.value = true
+    if (Object.keys(extraFields.value).length > 0) {
+      Object.assign(localEvent, extraFields.value)
+    }
+
+    if (!localEvent.description) {
+      delete localEvent.description
+    }
+
+    localEvent.initiated_at = getUTCDate(initiatedAt.value)
+    const store = formStoresMap[localEventType.value]
+
+    await store.create(localEvent)
+    $q.notify({
+      type: 'positive',
+      message: t('messages.positive'),
+      position: 'top',
+      actions: [
+        { icon: 'close', color: 'white', round: true, handler: () => { /* ... */ } }
+      ]
+    })
+    closeForm()
+  } catch (errors) {
+    console.log('errors', errors)
+    const message = Object.entries(errors.response.data.errors)
+      .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+      .join('; ')
+    $q.notify({
+      type: 'negative',
+      position: 'top',
+      message,
+      actions: [
+        { icon: 'close', color: 'white', round: true }
+      ]
+    })
+  } finally {
+    loading.value = false
   }
-
-  if (!localEvent.description) {
-    delete localEvent.description
-  }
-
-  localEvent.initiated_at = getUTCDate(initiatedAt.value)
-  const store = formStoresMap[localEventType.value]
-
-  await store.create(localEvent)
-  loading.value = false
-  closeForm()
 }
 
 function handleSelectedEvent (event) {

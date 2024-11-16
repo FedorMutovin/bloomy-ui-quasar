@@ -4,6 +4,9 @@
       <EverydayQuotesList />
     </div>
     <div class="col-12">
+      <WorkCard/>
+    </div>
+    <div class="col-12">
       <q-card class="q-ma-sm">
         <q-tabs
           inline-label
@@ -28,5 +31,6 @@
 <script setup>
 import EverydayQuotesList from 'components/everyday_quotes/EverydayQuotesList.vue'
 import { useEventTypeStore } from 'stores/event_type_store'
+import WorkCard from 'components/works/WorkCard.vue'
 const eventTypeStore = useEventTypeStore()
 </script>

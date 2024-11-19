@@ -39,6 +39,11 @@ export default {
         title: 'Create a New Action'
       }
     },
+    thoughts: {
+      create: {
+        title: 'Create a New Thing'
+      }
+    },
     create: {
       trigger: {
         info: 'A trigger is an event or action that leads to another event, helping you link them together as part of your progress.',
@@ -76,6 +81,9 @@ export default {
     actions: {
       title: 'Actions',
       description: 'A record of completed activities, capturing what you’ve done and the choices you’ve made along the way.'
+    },
+    thoughts: {
+      title: 'Thoughts'
     }
   },
   attributes: {

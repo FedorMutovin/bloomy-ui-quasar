@@ -22,7 +22,8 @@ const routes = [
             ]
           },
           { path: 'tasks', component: () => import('pages/core/TasksPage.vue') },
-          { path: 'actions', component: () => import('pages/core/ActionsPage.vue') }
+          { path: 'actions', component: () => import('pages/core/ActionsPage.vue') },
+          { path: 'thoughts', component: () => import('pages/core/ThoughtsPage.vue') }
         ]
       },
       { path: 'interests', component: () => import('pages/InterestPage.vue') }

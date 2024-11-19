@@ -26,6 +26,12 @@ export const useEventTypeStore = defineStore('EventTypeStore', {
         name: 'Action',
         icon: 'mdi-check-circle-outline',
         tab_path: '/core/actions'
+      },
+      {
+        id: 5,
+        name: 'Thought',
+        icon: 'mdi-thought-bubble-outline',
+        tab_path: '/core/thoughts'
       }
     ]
   }),

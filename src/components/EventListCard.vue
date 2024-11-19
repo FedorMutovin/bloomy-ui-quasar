@@ -11,7 +11,7 @@
 
     <q-separator/>
 
-    <q-scroll-area :style="{ height: '60vh', maxWidth: '1000px' }">
+    <q-scroll-area :style="{ height: '60vh'}">
       <q-list separator>
         <q-item :to="`/core/${resource}/${item.id}`" clickable v-ripple v-for="item in items" :key="item.id">
           <slot name="body" :item="item" />

@@ -2,7 +2,7 @@
   <q-card style="width: 700px; max-width: 1000px">
     <q-card-section class="row justify-between items-center">
       <div class="text-h6 col-11">{{ header }}</div>
-      <q-btn dense class="col-1" flat round icon="mdi-close" @click="closeForm"/>
+      <q-btn padding="none" square flat round icon="mdi-close" @click="closeForm"/>
     </q-card-section>
 
     <q-separator/>
@@ -49,7 +49,10 @@
           />
         </q-card-section>
 
-        <component :is="formFieldsComponentMap[localEventType]" @updateLocalEvent="updateLocalEvent" />
+        <component
+          :is="formFieldsComponentMap[localEventType]"
+          @updateLocalEvent="updateLocalEvent"
+        />
 
         <q-separator spaced inset />
 
@@ -57,16 +60,6 @@
           <div class="col-12 col-md-6">
             <q-item-label class="q-mt-md q-ml-sm" caption>{{ $t('attributes.initiated_at') }}</q-item-label>
             <DateTimePicker v-model="initiatedAt"/>
-          </div>
-          <div class="col-12 q-mt-md">
-            <q-item-label caption>{{ $t('attributes.priority') }}</q-item-label>
-            <q-rating
-              v-model="displayPriority"
-              size="md"
-              color="secondary"
-              icon="mdi-leaf-circle-outline"
-              icon-selected="mdi-leaf-circle"
-            />
           </div>
         </q-card-section>
       </div>
@@ -79,20 +72,20 @@
         <slot name="actions" />
       </template>
       <template v-else>
-        <q-btn flat color="accent" :label="$t('buttons.cancel')" @click="closeForm" />
-        <q-btn :loading="loading" color="accent" :label="$t('buttons.save')" @click="submitForm" />
+        <q-btn flat color="primary" :label="$t('buttons.cancel')" @click="closeForm" />
+        <q-btn :loading="loading" push color="blue-8" :label="$t('buttons.save')" @click="submitForm" />
       </template>
     </q-card-actions>
   </q-card>
 </template>
 
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
-import EventRelationSelect from 'components/EventRelationSelect.vue'
-import EventTypeSelect from 'components/EventTypeSelect.vue'
-import DateTimePicker from 'components/DateTimePicker.vue'
+import EventRelationSelect from 'components/forms/EventRelationSelect.vue'
+import EventTypeSelect from 'components/forms/EventTypeSelect.vue'
+import DateTimePicker from 'components/forms/DateTimePicker.vue'
 import TaskFields from 'components/tasks/forms/TaskFields.vue'
 import GoalFields from 'components/goals/forms/GoalFields.vue'
 import { useTaskStore } from 'stores/task_store'
@@ -148,14 +141,6 @@ const localEvent = reactive({
 })
 
 const loading = ref(false)
-const maxPriority = 5
-const displayPriority = computed({
-  get: () => maxPriority - localEvent.priority,
-  set: (value) => {
-    localEvent.priority = maxPriority - value
-  }
-})
-
 const initiatedAt = ref(getFormattedDate())
 
 function closeForm () {
@@ -215,5 +200,6 @@ function handleSelectedType (type) {
 
 function updateLocalEvent (newFields) {
   extraFields.value = newFields
+  console.log('extra', extraFields.value)
 }
 </script>

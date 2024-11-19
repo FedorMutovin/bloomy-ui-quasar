@@ -14,19 +14,17 @@
         <DateTimePicker v-model="scheduledAt"/>
       </div>
     </div>
+    <div class="col-12 q-mt-md">
+      <PriorityRating @update:priority="handlePriority" />
+    </div>
   </q-card-section>
 </template>
 <script setup>
 import { onMounted, ref, watch } from 'vue'
-import DateTimePicker from 'components/DateTimePicker.vue'
+import DateTimePicker from 'components/forms/DateTimePicker.vue'
 import { getFormattedDate, getUTCDate } from 'src/utils/formattedDate'
+import PriorityRating from 'components/forms/PriorityRating.vue'
 
-defineProps({
-  labelEvent: {
-    type: Object,
-    default: () => ({})
-  }
-})
 const emit = defineEmits(['updateLocalEvent'])
 
 const startImmediately = ref(true)
@@ -60,4 +58,9 @@ function updateLocalEventData () {
   emit('updateLocalEvent', updateData)
 }
 
+function handlePriority (priority) {
+  const updateData = {}
+  updateData.priority = priority
+  emit('updateLocalEvent', updateData)
+}
 </script>

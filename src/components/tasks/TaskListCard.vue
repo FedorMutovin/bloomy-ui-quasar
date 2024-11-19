@@ -19,6 +19,7 @@
             :name="index <= 5 - item.priority ? 'mdi-leaf-circle' : 'mdi-leaf-circle-outline'"
           />
         </div>
+        <EngagementForm :engagement-value="item.engagement" v-if="item.engagement !== null" />
       </q-item-section>
     </template>
 
@@ -35,6 +36,7 @@ import { useUserStore } from 'stores/user_store'
 import EventListCard from 'components/EventListCard.vue'
 import TaskForm from 'components/tasks/TaskForm.vue'
 import { useEventTypeStore } from 'stores/event_type_store'
+import EngagementForm from 'components/EngagementForm.vue'
 
 const eventTypeStore = useEventTypeStore()
 const taskStore = useTaskStore()

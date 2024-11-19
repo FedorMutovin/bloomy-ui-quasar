@@ -4,6 +4,12 @@ export default {
   },
   success: 'Success',
   forms: {
+    engagements: {
+      update: {
+        title: 'Adjust Engagement Level',
+        hint: 'Update your engagement level and provide a reason to track changes over time'
+      }
+    },
     wishes: {
       activate: {
         header: 'Take the First Step and Create a Related Action!',
@@ -78,6 +84,7 @@ export default {
     name: 'Name',
     started_at: 'Started',
     priority: 'Priority',
+    engagement: 'Engagement',
     initiated_at: 'Initiated At',
     schedule_at: 'Schedule At',
     hints: {

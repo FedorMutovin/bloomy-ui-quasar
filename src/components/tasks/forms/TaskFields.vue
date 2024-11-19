@@ -1,17 +1,27 @@
 <template>
   <q-card-section>
     <div>
-      <q-checkbox color="secondary" dense size="sm" v-model="startImmediately" :label="$t('forms.create.attributes.start_immediately')" />
+      <q-checkbox color="secondary" :disable="schedule" dense size="sm" v-model="startImmediately" :label="$t('forms.create.attributes.start_immediately')" />
       <q-item-label class="q-mt-sm" caption>{{ $t('forms.create.hints.start_immediately_hint') }}</q-item-label>
     </div>
-    <div class="q-mt-sm" v-if="!startImmediately">
-      <q-checkbox color="secondary" hint="loh" dense size="sm" v-model="schedule" :label="$t('forms.create.attributes.schedule')" />
+    <div class="q-mt-sm">
+      <q-checkbox color="secondary" dense size="sm" v-model="schedule" :label="$t('forms.create.attributes.schedule')" />
       <q-item-label class="q-mt-sm" caption>{{ $t('forms.create.hints.schedule_hint') }}</q-item-label>
     </div>
     <div class="row">
       <div class="q-mt-sm col-12 col-md-6" v-if="schedule">
         <q-item-label class="q-mt-md q-ml-sm" caption>{{ $t('attributes.schedule_at') }}</q-item-label>
         <DateTimePicker v-model="scheduledAt"/>
+      </div>
+    </div>
+    <div class="q-mt-sm">
+      <q-checkbox color="secondary" dense size="sm" v-model="deadline" :label="$t('forms.create.attributes.deadline')" />
+      <q-item-label class="q-mt-sm" caption>{{ $t('forms.create.hints.deadline_hint') }}</q-item-label>
+    </div>
+    <div class="row">
+      <div class="q-mt-sm col-12 col-md-6" v-if="deadline">
+        <q-item-label class="q-mt-md q-ml-sm" caption>{{ $t('attributes.deadline_at') }}</q-item-label>
+        <DateTimePicker v-model="deadlineAt"/>
       </div>
     </div>
     <div class="col-12 q-mt-md">
@@ -30,13 +40,21 @@ const emit = defineEmits(['updateLocalEvent'])
 const startImmediately = ref(true)
 const schedule = ref(false)
 const scheduledAt = ref(getFormattedDate())
+const deadline = ref(false)
+const deadlineAt = ref(getFormattedDate())
 
 onMounted(() => {
   updateLocalEventData()
 })
 
-watch([startImmediately, schedule, scheduledAt], () => {
+watch([startImmediately, schedule, scheduledAt, deadline, deadlineAt], () => {
   updateLocalEventData()
+})
+
+watch(schedule, (newValue) => {
+  if (newValue === true) {
+    startImmediately.value = false
+  }
 })
 
 function updateLocalEventData () {
@@ -53,8 +71,11 @@ function updateLocalEventData () {
       updateData.schedule.scheduled_at = getUTCDate(scheduledAt.value)
       updateData.status = 'scheduled'
     }
-  }
 
+    if (deadline.value) {
+      updateData.deadline_at = getUTCDate(deadlineAt.value)
+    }
+  }
   emit('updateLocalEvent', updateData)
 }
 

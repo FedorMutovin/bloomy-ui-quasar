@@ -57,11 +57,13 @@ export default {
       event_details_header: 'Event Details',
       attributes: {
         start_immediately: 'Start Immediately',
-        schedule: 'Schedule Event'
+        schedule: 'Schedule Event',
+        deadline: 'Set Deadline'
       },
       hints: {
         start_immediately_hint: 'Check this box to start the event right away and set its status to ‘In Progress’.',
-        schedule_hint: 'Check this box to set a scheduled start time for the event.'
+        schedule_hint: 'Check this box to set a scheduled start time for the event.',
+        deadline_hint: 'Check this box to set a deadline time for the event.'
       }
     }
   },
@@ -95,6 +97,7 @@ export default {
     engagement: 'Engagement',
     initiated_at: 'Initiated At',
     schedule_at: 'Schedule At',
+    deadline_at: 'Deadline Date',
     hints: {
       name: 'Give your event a name that stands out!',
       description: 'Add some details to make this event more meaningful.',

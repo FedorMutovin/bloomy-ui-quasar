@@ -23,7 +23,7 @@
         </div>
       </q-carousel-slide>
     </q-carousel>
-    <q-btn v-else class="full-width" flat color="accent" icon="mdi-plus-circle-outline"/>
+    <q-btn v-else class="full-width" flat color="primary" icon="mdi-plus-circle-outline"/>
   </q-card>
 </template>
 

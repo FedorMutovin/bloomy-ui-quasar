@@ -1,7 +1,7 @@
 <template>
   <q-select
     v-model="localEventType"
-    color="accent"
+    color="primary"
     :readonly="eventType !== null"
     :options="eventTypeStore.eventNames"
     :label="$t('forms.create.event_type.label')"

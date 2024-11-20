@@ -30,7 +30,7 @@
             clearable
             stack-label
             :placeholder="$t('attributes.hints.name')"
-            color="accent"
+            color="primary"
             :label="$t('attributes.name')"
             v-model="localEvent.name"
             autofocus
@@ -39,7 +39,7 @@
           <q-input
             outlined
             clearable
-            color="accent"
+            color="primary"
             autogrow
             stack-label
             :label="$t('attributes.description')"

@@ -9,27 +9,7 @@
       </q-card-section>
 
       <q-card-section>
-        <q-select
-          filled
-          v-model="engagement"
-          :options="engagementStore.engagements"
-          label="Standard"
-          color="teal"
-          clearable
-          options-selected-class="text-deep-orange"
-        >
-          <template v-slot:option="scope">
-            <q-item v-bind="scope.itemProps">
-              <q-item-section avatar>
-                <q-icon :name="scope.opt.icon" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ scope.opt.name }}</q-item-label>
-                <q-item-label caption>{{ scope.opt.description }}</q-item-label>
-              </q-item-section>
-            </q-item>
-          </template>
-        </q-select>
+        <EngagementSelect v-model="selectedEngagement"/>
       </q-card-section>
 
       <q-card-section>
@@ -45,10 +25,10 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import EngagementSelect from 'components/engagements/EngagementSelect.vue'
 import { useEngagementStore } from 'stores/engagement_store'
 
 const engagementStore = useEngagementStore()
-
 const props = defineProps({
   engagementValue: {
     type: Number,
@@ -56,8 +36,9 @@ const props = defineProps({
   }
 })
 
+const selectedEngagement = ref(props.engagementValue)
+
 const openForm = ref(false)
-const engagement = ref(props.engagementValue)
 function closeForm () {
   openForm.value = false
 }

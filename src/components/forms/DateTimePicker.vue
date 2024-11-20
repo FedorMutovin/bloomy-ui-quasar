@@ -1,11 +1,11 @@
 <template>
-  <q-input color="accent" :model-value="date" @update:model-value="onInput">
+  <q-input color="primary" :model-value="date" @update:model-value="onInput">
     <template v-slot:prepend>
-      <q-icon color="accent" name="event" class="cursor-pointer">
+      <q-icon color="primary" name="event" class="cursor-pointer">
         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
           <q-date color="secondary" v-model="date" mask="YYYY-MM-DD HH:mm">
             <div class="row items-center justify-end">
-              <q-btn color="accent" v-close-popup label="Close" flat />
+              <q-btn color="primary" v-close-popup label="Close" flat />
             </div>
           </q-date>
         </q-popup-proxy>
@@ -13,11 +13,11 @@
     </template>
 
     <template v-slot:append>
-      <q-icon color="accent" name="access_time" class="cursor-pointer">
+      <q-icon color="primary" name="access_time" class="cursor-pointer">
         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
           <q-time color="secondary" v-model="date" mask="YYYY-MM-DD HH:mm" format24h>
             <div class="row items-center justify-end">
-              <q-btn color="accent" v-close-popup label="Close" flat />
+              <q-btn color="primary" v-close-popup label="Close" flat />
             </div>
           </q-time>
         </q-popup-proxy>

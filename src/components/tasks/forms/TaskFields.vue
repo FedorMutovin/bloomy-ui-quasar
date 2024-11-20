@@ -24,9 +24,27 @@
         <DateTimePicker v-model="deadlineAt"/>
       </div>
     </div>
-    <div class="col-12 q-mt-md">
-      <PriorityRating @update:priority="handlePriority" />
+  </q-card-section>
+
+  <q-separator spaced inset />
+
+  <q-card-section>
+    <div>
+      <q-checkbox color="secondary" dense size="sm" v-model="engagement" :label="$t('forms.create.attributes.engagement')" />
+      <q-item-label class="q-mt-sm" caption>{{ $t('forms.create.hints.engagement_hint') }}</q-item-label>
     </div>
+
+    <div class="row">
+      <div class="q-mt-sm col-12 col-md-6" v-if="engagement">
+        <EngagementSelect v-model="selectedEngagementValue"/>
+      </div>
+    </div>
+  </q-card-section>
+
+  <q-separator spaced inset />
+
+  <q-card-section>
+    <PriorityRating @update:priority="handlePriority" />
   </q-card-section>
 </template>
 <script setup>
@@ -34,7 +52,10 @@ import { onMounted, ref, watch } from 'vue'
 import DateTimePicker from 'components/forms/DateTimePicker.vue'
 import { getFormattedDate, getUTCDate } from 'src/utils/formattedDate'
 import PriorityRating from 'components/forms/PriorityRating.vue'
+import EngagementSelect from 'components/engagements/EngagementSelect.vue'
+import { useEngagementStore } from 'stores/engagement_store'
 
+const engagementStore = useEngagementStore()
 const emit = defineEmits(['updateLocalEvent'])
 
 const startImmediately = ref(true)
@@ -42,14 +63,18 @@ const schedule = ref(false)
 const scheduledAt = ref(getFormattedDate())
 const deadline = ref(false)
 const deadlineAt = ref(getFormattedDate())
+const engagement = ref(false)
+const selectedEngagementValue = ref(engagementStore.getEngagementByValue(3))
 
 onMounted(() => {
   updateLocalEventData()
 })
 
-watch([startImmediately, schedule, scheduledAt, deadline, deadlineAt], () => {
-  updateLocalEventData()
-})
+watch([startImmediately, schedule, scheduledAt, deadline, deadlineAt, engagement, selectedEngagementValue],
+  () => {
+    updateLocalEventData()
+  }
+)
 
 watch(schedule, (newValue) => {
   if (newValue === true) {
@@ -59,6 +84,7 @@ watch(schedule, (newValue) => {
 
 function updateLocalEventData () {
   const updateData = {}
+  updateData.status = 'pending'
 
   if (startImmediately.value || schedule.value) {
     if (startImmediately.value) {
@@ -74,6 +100,11 @@ function updateLocalEventData () {
 
     if (deadline.value) {
       updateData.deadline_at = getUTCDate(deadlineAt.value)
+    }
+
+    if (engagement.value) {
+      updateData.engagement_changes = {}
+      updateData.engagement_changes.value = selectedEngagementValue.value.value
     }
   }
   emit('updateLocalEvent', updateData)

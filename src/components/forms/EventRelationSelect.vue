@@ -2,7 +2,7 @@
   <q-select
     v-model="event"
     stack-label
-    color="accent"
+    color="primary"
     :readonly="triggerId !== null"
     :options="options"
     :label="$t('forms.create.trigger.label')"

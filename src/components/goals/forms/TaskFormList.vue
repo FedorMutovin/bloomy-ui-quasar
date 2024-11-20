@@ -4,7 +4,7 @@
     class="col-12"
     default-opened
     icon="perm_identity"
-    header-class="text-accent"
+    header-class="text-primary"
   >
     <template v-slot:header>
       <q-item-section class="text-subtitle1 text-black">
@@ -12,8 +12,8 @@
           <div>
             {{ $t('forms.create.goals.action_steps') }}
           </div>
-          <q-icon class="q-ma-sm" size="sm" name="mdi-help-circle-outline" color="accent" >
-            <q-tooltip class="bg-accent text-body2" anchor="top middle" self="center middle">
+          <q-icon class="q-ma-sm" size="sm" name="mdi-help-circle-outline" color="primary" >
+            <q-tooltip class="bg-primary text-body2" anchor="top middle" self="center middle">
               {{ $t('forms.create.goals.action_steps_tip') }}
             </q-tooltip>
           </q-icon>
@@ -36,10 +36,10 @@
         @update:modelValue="updateTask(index, $event)"
       >
         <template #actions>
-          <q-btn flat color="accent" :label="$t('buttons.remove')" @click="removeTask(index)" />
+          <q-btn flat color="primary" :label="$t('buttons.remove')" @click="removeTask(index)" />
         </template>
       </EventForm>
-      <q-btn class="q-mt-md" size="md" color="accent" :label="$t('forms.create.goals.add_task')" @click="addTask"  />
+      <q-btn class="q-mt-md" size="md" color="primary" :label="$t('forms.create.goals.add_task')" @click="addTask"  />
     </q-card-section>
   </q-expansion-item>
 </template>

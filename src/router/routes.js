@@ -21,7 +21,13 @@ const routes = [
               { path: ':id', component: () => import('pages/core/goals/GoalPage.vue') }
             ]
           },
-          { path: 'tasks', component: () => import('pages/core/TasksPage.vue') },
+          {
+            path: 'tasks',
+            component: () => import('pages/core/TasksPage.vue'),
+            children: [
+              { path: ':id', component: () => import('pages/core/tasks/TaskPage.vue') }
+            ]
+          },
           { path: 'actions', component: () => import('pages/core/ActionsPage.vue') },
           { path: 'thoughts', component: () => import('pages/core/ThoughtsPage.vue') }
         ]

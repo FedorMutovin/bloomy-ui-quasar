@@ -6,7 +6,7 @@
 
     <q-separator />
 
-    <q-card-section>
+    <q-card-section v-if="task">
       <div>{{ task.name }}</div>
       <div>{{ task.description }}</div>
       <div>{{ task.status }}</div>
@@ -15,11 +15,21 @@
   </q-card>
 </template>
 <script setup>
-defineProps({
-  task: {
-    type: Object,
-    default: () => {}
+const props = defineProps({
+  taskId: {
+    type: String,
+    required: true
   }
+})
+
+import { ref, onBeforeMount } from 'vue'
+import { useTaskStore } from 'stores/task_store'
+
+const task = ref(null)
+const taskStore = useTaskStore()
+
+onBeforeMount(async () => {
+  task.value = await taskStore.findById(props.taskId)
 })
 
 </script>

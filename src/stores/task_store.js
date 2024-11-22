@@ -23,6 +23,10 @@ export const useTaskStore = defineStore('TaskStore', {
       }
       const response = await api.post('/api/v1/tasks', params)
       return response.data
+    },
+    async findById (taskId) {
+      const response = await api.get(`/api/v1/tasks/${taskId}`)
+      return response.data
     }
   }
 })

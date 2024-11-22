@@ -92,6 +92,7 @@ import { useTaskStore } from 'stores/task_store'
 import { useGoalStore } from 'stores/goal_store'
 import { useActionStore } from 'stores/action_store'
 import { useWishStore } from 'stores/wish_store'
+import { useThoughtStore } from 'stores/thought_store'
 import { getFormattedDate, getUTCDate } from 'src/utils/formattedDate'
 
 const $q = useQuasar()
@@ -100,6 +101,7 @@ const taskStore = useTaskStore()
 const goalStore = useGoalStore()
 const actionStore = useActionStore()
 const wishStore = useWishStore()
+const thoughtStore = useThoughtStore()
 const emit = defineEmits(['close', 'submit', 'update:modelValue'])
 
 const props = defineProps({
@@ -126,7 +128,8 @@ const formStoresMap = {
   Task: taskStore,
   Goal: goalStore,
   Action: actionStore,
-  Wish: wishStore
+  Wish: wishStore,
+  Thought: thoughtStore
 }
 
 const extraFields = ref({})

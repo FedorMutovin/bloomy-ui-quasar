@@ -7,8 +7,13 @@ export const useActionStore = defineStore('ActionStore', {
       actions: []
     }
   },
+  getters: {
+    getById: (state) => (id) => {
+      return state.actions.find(action => action.id === id) || null
+    }
+  },
   actions: {
-    async getForUser (id) {
+    async getForUser () {
       const response = await api.get('/api/v1/actions')
       this.actions = response.data
       return response

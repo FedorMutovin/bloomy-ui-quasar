@@ -3,6 +3,7 @@
     :icon="eventTypeStore.getIconByEventName('Action')"
     resource="actions"
     :items="actionStore.actions"
+    @item-selected="handleItemSelected"
   >
     <template #body="{ item }">
       <q-item-section>
@@ -18,18 +19,17 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
 import { useActionStore } from 'stores/action_store'
-import { useUserStore } from 'stores/user_store'
 import { useEventTypeStore } from 'stores/event_type_store'
 import EventListCard from 'components/EventListCard.vue'
-import ActionForm from 'components/actions/ActionForm.vue'
+import ActionForm from 'components/core_page/roots/actions/ActionForm.vue'
 
 const actionStore = useActionStore()
 const eventTypeStore = useEventTypeStore()
-const userStore = useUserStore()
 
-onMounted(async () => {
-  await actionStore.getForUser(userStore.id)
-})
+const emit = defineEmits(['item-selected'])
+
+function handleItemSelected (itemId) {
+  emit('item-selected', itemId)
+}
 </script>

@@ -22,14 +22,22 @@ const props = defineProps({
   }
 })
 
-import { ref, onBeforeMount } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useTaskStore } from 'stores/task_store'
 
 const task = ref(null)
 const taskStore = useTaskStore()
 
-onBeforeMount(async () => {
-  task.value = await taskStore.findById(props.taskId)
+onMounted(async () => {
+  task.value = await taskStore.getById(props.taskId)
 })
+
+watch(
+  () => props.taskId,
+  (newId) => {
+    task.value = taskStore.getById(newId)
+  },
+  { immediate: true }
+)
 
 </script>

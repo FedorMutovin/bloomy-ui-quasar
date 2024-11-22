@@ -1,16 +1,16 @@
 <template>
   <q-layout view="hHh LpR lfr">
 
-    <q-header bordered class="bg-primary text-black">
+    <q-header bordered class="bg-white text-black">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title class="text-white">
+        <q-toolbar-title class="text-accent">
           Bloomy
         </q-toolbar-title>
 
-        <q-btn flat round icon="mdi-calendar-clock-outline" elevated @click="toggleRightDrawer" />
-        <q-btn flat round icon="mdi-cog" elevated />
+        <q-btn flat round color="blue-grey-9" icon="mdi-calendar-clock-outline" elevated @click="toggleRightDrawer" />
+        <q-btn flat round color="blue-grey-9" icon="mdi-cog" elevated />
       </q-toolbar>
     </q-header>
 
@@ -20,7 +20,6 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       :width="200"
       :breakpoint="500"
       bordered
@@ -61,7 +60,7 @@ import { useUserStore } from 'stores/user_store'
 
 const userStore = useUserStore()
 const rightDrawerOpen = ref(false)
-const leftDrawerOpen = ref(true)
+const leftDrawerOpen = ref(false)
 const menuList = [
   {
     icon: 'mdi-run-fast',

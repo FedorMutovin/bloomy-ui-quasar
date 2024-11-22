@@ -73,7 +73,7 @@
       </template>
       <template v-else>
         <q-btn flat color="primary" :label="$t('buttons.cancel')" @click="closeForm" />
-        <q-btn :loading="loading" push color="blue-8" :label="$t('buttons.save')" @click="submitForm" />
+        <q-btn :loading="loading" push color="primary" :label="$t('buttons.save')" @click="submitForm" />
       </template>
     </q-card-actions>
   </q-card>
@@ -86,8 +86,8 @@ import { useI18n } from 'vue-i18n'
 import EventRelationSelect from 'components/forms/EventRelationSelect.vue'
 import EventTypeSelect from 'components/forms/EventTypeSelect.vue'
 import DateTimePicker from 'components/forms/DateTimePicker.vue'
-import TaskFields from 'components/tasks/forms/TaskFields.vue'
-import GoalFields from 'components/goals/forms/GoalFields.vue'
+import TaskFields from 'components/core_page/roots/tasks/forms/TaskFields.vue'
+import GoalFields from 'components/core_page/roots/goals/forms/GoalFields.vue'
 import { useTaskStore } from 'stores/task_store'
 import { useGoalStore } from 'stores/goal_store'
 import { useActionStore } from 'stores/action_store'

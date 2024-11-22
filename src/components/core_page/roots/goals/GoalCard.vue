@@ -27,15 +27,23 @@ const props = defineProps({
   }
 })
 
-import { ref, onBeforeMount } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useGoalStore } from 'stores/goal_store'
-import TaskCard from 'components/tasks/TaskCard.vue'
+import TaskCard from 'components/core_page/roots/tasks/TaskCard.vue'
 
 const goal = ref(null)
 const goalStore = useGoalStore()
 
-onBeforeMount(async () => {
-  goal.value = await goalStore.findById(props.goalId)
+onMounted(async () => {
+  goal.value = await goalStore.getById(props.goalId)
 })
+
+watch(
+  () => props.goalId,
+  (newId) => {
+    goal.value = goalStore.getById(newId)
+  },
+  { immediate: true }
+)
 
 </script>

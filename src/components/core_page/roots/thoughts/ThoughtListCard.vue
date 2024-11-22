@@ -3,11 +3,12 @@
     :icon="eventTypeStore.getIconByEventName('Thought')"
     resource="thoughts"
     :items="thoughtStore.thoughts"
+    @item-selected="handleItemSelected"
   >
     <template #body="{ item }">
-      <q-item-section>
+      <q-card-section>
         <q-item-label caption>{{ item.description }}</q-item-label>
-      </q-item-section>
+      </q-card-section>
     </template>
 
     <template #form="{ close }">
@@ -17,18 +18,17 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
 import { useThoughtStore } from 'stores/thought_store'
-import { useUserStore } from 'stores/user_store'
 import { useEventTypeStore } from 'stores/event_type_store'
 import EventListCard from 'components/EventListCard.vue'
-import ThoughtForm from 'components/thoughts/ThoughtForm.vue'
+import ThoughtForm from 'components/core_page/roots/thoughts/ThoughtForm.vue'
 
 const thoughtStore = useThoughtStore()
 const eventTypeStore = useEventTypeStore()
-const userStore = useUserStore()
 
-onMounted(async () => {
-  await thoughtStore.getForUser(userStore.id)
-})
+const emit = defineEmits(['item-selected'])
+
+function handleItemSelected (itemId) {
+  emit('item-selected', itemId)
+}
 </script>

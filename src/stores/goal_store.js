@@ -7,13 +7,14 @@ export const useGoalStore = defineStore('GoalStore', {
       goals: []
     }
   },
+  getters: {
+    getById: (state) => (id) => {
+      return state.goals.find(goal => goal.id === id) || null
+    }
+  },
   actions: {
-    async getForUser (id) {
-      const response = await api.get('/api/v1/goals', {
-        params: {
-          user_id: id
-        }
-      })
+    async getForUser () {
+      const response = await api.get('/api/v1/goals')
       this.goals = response.data
       return response
     },

@@ -7,13 +7,14 @@ export const useWishStore = defineStore('WishStore', {
       wishes: []
     }
   },
+  getters: {
+    getById: (state) => (id) => {
+      return state.wishes.find(wish => wish.id === id) || null
+    }
+  },
   actions: {
-    async getForUser (id) {
-      const response = await api.get('/api/v1/wishes', {
-        params: {
-          user_id: id
-        }
-      })
+    async getForUser () {
+      const response = await api.get('/api/v1/wishes')
       this.wishes = response.data
       return response
     },

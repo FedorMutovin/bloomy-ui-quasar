@@ -1,6 +1,6 @@
 <template>
     <q-item-label caption>{{ $t('attributes.engagement') }}</q-item-label>
-    <q-btn flat dense :icon="engagementStore.getIconByValue(engagementValue)" @click="openForm = false"/>
+    <q-btn flat dense color="accent" :icon="engagementStore.getIconByValue(engagementValue)" @click="openForm = false"/>
   <q-dialog v-model="openForm" persistent transition-show="scale" transition-hide="scale">
     <q-card>
       <q-card-section>
@@ -18,7 +18,7 @@
 
       <q-card-actions align="right">
         <q-btn flat color="primary" :label="$t('buttons.cancel')" @click="closeForm" />
-        <q-btn push color="blue-8" label="OK" v-close-popup />
+        <q-btn push color="primary" label="OK" v-close-popup />
       </q-card-actions>
     </q-card>
   </q-dialog>

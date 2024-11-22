@@ -95,7 +95,7 @@ export default {
     status: 'Status',
     name: 'Name',
     started_at: 'Started',
-    priority: 'Priority',
+    priority: 'Want To Grow',
     engagement: 'Engagement',
     initiated_at: 'Initiated At',
     schedule_at: 'Schedule At',

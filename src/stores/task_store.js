@@ -7,13 +7,14 @@ export const useTaskStore = defineStore('TaskStore', {
       tasks: []
     }
   },
+  getters: {
+    getById: (state) => (id) => {
+      return state.tasks.find(task => task.id === id) || null
+    }
+  },
   actions: {
-    async getForUser (id) {
-      const response = await api.get('/api/v1/tasks', {
-        params: {
-          user_id: id
-        }
-      })
+    async getForUser () {
+      const response = await api.get('/api/v1/tasks')
       this.tasks = response.data
       return response
     },

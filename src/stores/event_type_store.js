@@ -5,33 +5,28 @@ export const useEventTypeStore = defineStore('EventTypeStore', {
     event_types: [
       {
         id: 1,
-        name: 'Wish',
-        icon: 'mdi-notebook-heart-outline',
-        tab_path: '/core/wishes'
+        name: 'wish',
+        icon: 'mdi-notebook-heart-outline'
       },
       {
         id: 2,
-        name: 'Goal',
-        icon: 'mdi-sprout-outline',
-        tab_path: '/core/goals'
+        name: 'goal',
+        icon: 'mdi-sprout-outline'
       },
       {
         id: 3,
-        name: 'Task',
-        icon: 'mdi-clipboard-text-outline',
-        tab_path: '/core/tasks'
+        name: 'task',
+        icon: 'mdi-clipboard-text-outline'
       },
       {
         id: 4,
-        name: 'Action',
-        icon: 'mdi-check-circle-outline',
-        tab_path: '/core/actions'
+        name: 'action',
+        icon: 'mdi-check-circle-outline'
       },
       {
         id: 5,
-        name: 'Thought',
-        icon: 'mdi-thought-bubble-outline',
-        tab_path: '/core/thoughts'
+        name: 'thought',
+        icon: 'mdi-thought-bubble-outline'
       }
     ]
   }),
@@ -43,6 +38,9 @@ export const useEventTypeStore = defineStore('EventTypeStore', {
     },
     eventNames: (state) => {
       return state.event_types.map(type => type.name)
+    },
+    getEventTypeByName: (state) => (eventName) => {
+      return state.event_types.find(type => type.name === eventName) || null
     }
   }
 })

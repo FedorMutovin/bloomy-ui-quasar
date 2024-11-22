@@ -7,8 +7,13 @@ export const useThoughtStore = defineStore('ThoughtStore', {
       thoughts: []
     }
   },
+  getters: {
+    getById: (state) => (id) => {
+      return state.thoughts.find(thought => thought.id === id) || null
+    }
+  },
   actions: {
-    async getForUser (id) {
+    async getForUser () {
       const response = await api.get('/api/v1/thoughts')
       this.thoughts = response.data
       return response

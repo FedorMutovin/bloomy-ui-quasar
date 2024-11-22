@@ -1,27 +1,18 @@
 <template>
-  <q-card square flat bordered>
-    <q-item>
-      <q-item-section>
-        <div class="flex row items-center justify-center">
-          <q-icon :name="icon" size="sm" class="col-6"/>
-          <q-item-label class="col-6 text-subtitle1">{{ $t(`cards.${resource}.title`) }}</q-item-label>
-        </div>
-      </q-item-section>
-    </q-item>
-
-    <q-separator/>
+  <q-card flat class="bg-grey-2">
+    <q-card-section>
+      <q-item-label class="text-center text-subtitle1">{{ $t(`cards.${resource}.title`) }}</q-item-label>
+    </q-card-section>
 
     <q-scroll-area :style="{ height: '60vh'}">
-      <q-list separator>
-        <q-item :to="`/core/${resource}/${item.id}`" clickable v-ripple v-for="item in items" :key="item.id">
-          <slot name="body" :item="item" />
-        </q-item>
-
-        <q-separator />
+      <q-list dense>
+        <q-card class="q-ma-sm" v-for="item in items" :key="item.id">
+          <q-item @click="handleClick(item.id)" clickable dense v-ripple="{ color: 'primary' }" class="q-pa-none">
+            <slot name="body" :item="item" />
+          </q-item>
+        </q-card>
       </q-list>
     </q-scroll-area>
-
-    <q-separator />
 
     <q-card-actions>
       <q-btn class="full-width" push color="primary" icon="mdi-plus-circle-outline" @click="openForm = true"/>
@@ -41,9 +32,15 @@ defineProps({
   items: Array
 })
 
+const emit = defineEmits(['item-selected'])
+
 const openForm = ref(false)
 
 function closeForm () {
   openForm.value = false
+}
+
+function handleClick (id) {
+  emit('item-selected', id)
 }
 </script>

@@ -120,16 +120,16 @@ const props = defineProps({
 })
 
 const formFieldsComponentMap = {
-  Task: TaskFields,
-  Goal: GoalFields
+  task: TaskFields,
+  goal: GoalFields
 }
 
 const formStoresMap = {
-  Task: taskStore,
-  Goal: goalStore,
-  Action: actionStore,
-  Wish: wishStore,
-  Thought: thoughtStore
+  task: taskStore,
+  goal: goalStore,
+  action: actionStore,
+  wish: wishStore,
+  thought: thoughtStore
 }
 
 const extraFields = ref({})

@@ -1,5 +1,5 @@
 <template>
-  <EventForm :header="$t(`forms.thoughts.create.title`)" event-type="Thought"/>
+  <EventForm :header="$t(`forms.thoughts.create.title`)" event-type="thought"/>
 </template>
 
 <script setup>

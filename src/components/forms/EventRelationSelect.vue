@@ -24,7 +24,7 @@
     <template v-slot:option="scope">
       <q-item v-bind="scope.itemProps">
         <q-item-section avatar>
-          <q-icon :name="eventTypeStore.getIconByEventName(scope.opt.event_type)" />
+          <q-icon :name="eventTypeStore.getIconByEventName(scope.opt.event_type.toLowerCase())" />
         </q-item-section>
         <q-item-section>
           <q-item-label>{{ scope.opt.name }}</q-item-label>

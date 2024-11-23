@@ -1,5 +1,5 @@
 <template>
-  <EventForm :header="$t(`forms.goals.create.title`)" event-type="Goal"/>
+  <EventForm :header="$t(`forms.goals.create.title`)" event-type="goal"/>
 </template>
 
 <script setup>

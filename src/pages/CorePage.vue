@@ -17,5 +17,5 @@
 <script setup>
 import EverydayQuotesList from 'components/core_page/everyday_quotes/EverydayQuotesList.vue'
 import WorkCard from 'components/core_page/works/WorkCard.vue'
-import RootTabs from 'components/core_page/roots/RootTabs.vue'
+import RootTabs from 'components/core_page/RootTabs.vue'
 </script>

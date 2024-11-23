@@ -1,5 +1,5 @@
 <template>
-  <q-input color="primary" :model-value="date" @update:model-value="onInput">
+  <q-input outlined :label="label" color="primary" :model-value="date" @update:model-value="onInput">
     <template v-slot:prepend>
       <q-icon color="primary" name="event" class="cursor-pointer">
         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -34,6 +34,10 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: ''
+  },
+  label: {
+    type: String,
+    required: true
   }
 })
 

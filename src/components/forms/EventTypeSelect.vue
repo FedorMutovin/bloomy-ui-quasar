@@ -4,18 +4,18 @@
     color="primary"
     :readonly="eventType !== null"
     :options="eventTypeStore.eventNames"
-    :label="$t('forms.create.event_type.label')"
+    :label="$t('forms.create.root_type.label')"
     behavior="menu"
     stack-label
     @update:model-value="emitSelectedEvent"
-    :hint="$t('forms.create.event_type.info')"
+    :hint="$t('forms.create.root_type.info')"
   >
     <template v-slot:selected-item="scope">
       <q-item-section avatar>
         <q-icon :name="eventTypeStore.getIconByEventName(scope.opt)" />
       </q-item-section>
       <q-item-section>
-        <q-item-label>{{ scope.opt }}</q-item-label>
+        <q-item-label>{{ capitalizeFirstLetter(scope.opt) }}</q-item-label>
       </q-item-section>
     </template>
     <template v-slot:option="scope">
@@ -24,7 +24,7 @@
           <q-icon :name="eventTypeStore.getIconByEventName(scope.opt)" />
         </q-item-section>
         <q-item-section>
-          <q-item-label>{{ scope.opt }}</q-item-label>
+          <q-item-label>{{ capitalizeFirstLetter(scope.opt) }}</q-item-label>
         </q-item-section>
       </q-item>
     </template>
@@ -44,6 +44,11 @@ const props = defineProps({
     default: null
   }
 })
+
+const capitalizeFirstLetter = (str) => {
+  if (!str) return ''
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
 
 function emitSelectedEvent (newEvent) {
   localEventType.value = newEvent

@@ -8,7 +8,7 @@ export const useEventStore = defineStore('EventStore', {
     }
   },
   actions: {
-    async getForUser (id) {
+    async getForUser () {
       const response = await api.get('/api/v1/events')
       this.events = response.data
       return response

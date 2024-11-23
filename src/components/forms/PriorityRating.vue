@@ -14,8 +14,15 @@
 <script setup>
 import { computed, ref } from 'vue'
 
+const props = defineProps({
+  priority: {
+    type: Number,
+    default: 4
+  }
+})
+
 const maxPriority = 5
-const priority = ref(0)
+const priority = ref(props.priority)
 
 const emit = defineEmits(['update:priority'])
 

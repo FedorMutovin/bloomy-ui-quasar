@@ -37,6 +37,10 @@ export default {
     actions: {
       create: {
         title: 'Create a New Action'
+      },
+      unite: {
+        button: 'Unite',
+        title: 'Combine Two Roots into One Unified Entry'
       }
     },
     thoughts: {
@@ -45,16 +49,16 @@ export default {
       }
     },
     create: {
-      trigger: {
-        info: 'A trigger is an event or action that leads to another event, helping you link them together as part of your progress.',
-        label: 'Triggered By',
-        no_option: 'No events yet! Start creating your first one.'
+      root: {
+        hint: 'Roots are how everything connects. They show where your journey started and how each step helps you grow.',
+        label: 'Rooted In',
+        no_option: 'No roots yet! Start creating something to inspire your next step.'
       },
-      event_type: {
-        info: 'Choose the category that best describes your event.',
-        label: 'Event Type'
+      root_type: {
+        info: 'Pick a category that fits your root best.',
+        label: 'What’s This Root About?'
       },
-      event_details_header: 'Event Details',
+      root_details_header: "Let's Define Your Root",
       attributes: {
         start_immediately: 'Start Immediately',
         schedule: 'Schedule Event',

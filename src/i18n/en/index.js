@@ -39,8 +39,7 @@ export default {
         title: 'Create a New Action'
       },
       unite: {
-        button: 'Unite',
-        title: 'Combine Two Roots into One Unified Entry'
+        button: 'Unite'
       }
     },
     thoughts: {
@@ -71,6 +70,18 @@ export default {
         deadline_hint: 'Check this box to set a deadline time for the event.',
         engagement_hint: 'Want to know how engaged you are with this event? Enable tracking to find out!'
       }
+    },
+    unite: {
+      title: 'Combine Two Roots into One Unified Entry',
+      target: {
+        label: 'Root to keep',
+        hint: 'Choose the main root that will remain after uniting.'
+      },
+      source: {
+        label: 'Root to unite',
+        hint: 'This root will be united'
+      },
+      action: 'Unite'
     }
   },
   cards: {
@@ -104,6 +115,7 @@ export default {
     initiated_at: 'Initiated At',
     schedule_at: 'Schedule At',
     deadline_at: 'Deadline Date',
+    reason: 'Reason',
     engagements: {
       value: 'Engagement Value'
     },
@@ -111,7 +123,8 @@ export default {
       name: 'Give your event a name that stands out!',
       description: 'Add some details to make this event more meaningful.',
       priority: 'Priority',
-      initiated_at: 'Initiated At'
+      initiated_at: 'Initiated At',
+      reason: 'Add reason'
     }
   },
   buttons: {
@@ -127,6 +140,9 @@ export default {
     postponed: 'Postponed'
   },
   messages: {
-    positive: 'Event has been created successfully.'
+    positive: 'Event has been created successfully.',
+    unite: {
+      positive: 'The roots has been united successfully.'
+    }
   }
 }

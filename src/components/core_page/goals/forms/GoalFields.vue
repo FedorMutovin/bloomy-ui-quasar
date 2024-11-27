@@ -100,10 +100,11 @@ onMounted(() => {
   updateLocalEventData()
 })
 
-watch([startImmediately, deadline, deadlineAt, engagement, selectedEngagementValue, initiatedAt],
-  () => {
-    updateLocalEventData()
-  }
+watch([startImmediately, deadline, deadlineAt, engagement,
+  selectedEngagementValue, initiatedAt, name, description, localPriority],
+() => {
+  updateLocalEventData()
+}
 )
 
 function updateLocalEventData () {

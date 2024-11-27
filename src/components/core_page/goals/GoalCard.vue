@@ -15,13 +15,15 @@
       <q-btn @click="handleUniteAction(goal)" push color="primary" :label="$t('forms.actions.unite.button')" class="q-ma-sm" />
     </q-card-actions>
     <q-dialog v-model="openUniteForm" persistent>
-      <FormCard @close="openUniteForm = false" :header="$t(`forms.actions.unite.title`)" />
+      <UniteForm :root-id="goal.id" root-type="goal" @close="openUniteForm = false"  />
     </q-dialog>
   </div>
 </template>
 
 <script setup>
-import FormCard from 'components/FormCard.vue'
+import { ref, onMounted, watch } from 'vue'
+import { useGoalStore } from 'stores/goal_store'
+import UniteForm from 'components/core_page/unite/UniteForm.vue'
 
 const props = defineProps({
   goalId: {
@@ -29,9 +31,6 @@ const props = defineProps({
     required: true
   }
 })
-
-import { ref, onMounted, watch } from 'vue'
-import { useGoalStore } from 'stores/goal_store'
 
 const goal = ref(null)
 const goalStore = useGoalStore()

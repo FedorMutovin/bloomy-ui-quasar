@@ -103,7 +103,7 @@ onMounted(() => {
 })
 
 watch([startImmediately, schedule, scheduledAt, deadline,
-  deadlineAt, engagement, selectedEngagementValue, initiatedAt],
+  deadlineAt, engagement, selectedEngagementValue, initiatedAt, name, description, localPriority],
 () => {
   updateLocalEventData()
 }

@@ -19,7 +19,6 @@
      </q-card-section>
 
      <q-card-section class="row">
-<!--       <EventTypeSelect class="col-12 col-md-7" :event-type="eventType" @update:selected-event="handleSelectedType"/>-->
        <EventTypeSelect class="col-12 col-md-7" @update:selected-event="handleSelectedType"/>
      </q-card-section>
 

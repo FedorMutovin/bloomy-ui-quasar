@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-ma-sm">
+  <q-card flat class="q-ma-sm">
     <q-carousel
       v-model="slide"
       swipeable

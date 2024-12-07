@@ -1,9 +1,5 @@
 <template>
-  <q-card flat class="bg-grey-2">
-    <q-card-section>
-      <q-item-label class="text-center text-subtitle1">{{ $t(`cards.${resource}.title`) }}</q-item-label>
-    </q-card-section>
-
+  <q-card flat square class="bg-transparent">
     <q-scroll-area :style="{ height: '60vh'}">
       <q-list dense>
         <q-card class="q-ma-sm" v-for="item in items" :key="item.id">

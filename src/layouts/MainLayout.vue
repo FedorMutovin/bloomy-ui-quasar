@@ -1,86 +1,81 @@
 <template>
   <q-layout view="hHh LpR lfr">
 
-    <q-header bordered class="bg-white text-black">
-      <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-
-        <q-toolbar-title class="text-accent">
+    <q-header reveal class="bg-white text-black q-pa-sm">
+      <q-toolbar >
+<!--        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />-->
+        <q-space/>
+        <q-toolbar-title class="text-accent text-weight-bolder">
           Bloomy
         </q-toolbar-title>
 
         <q-btn flat round color="blue-grey-9" icon="mdi-calendar-clock-outline" elevated @click="toggleRightDrawer" />
         <q-btn flat round color="blue-grey-9" icon="mdi-cog" elevated />
       </q-toolbar>
+      <q-toolbar inset>
+        <q-btn-toggle
+          v-model="page"
+          toggle-color="primary"
+          color="grey-4"
+          rounded
+          unelevated
+          text-color="blue-grey-9"
+          :options="pages"
+        />
+      </q-toolbar>
     </q-header>
-
-<!--    <q-drawer v-model="leftDrawerOpen" side="left"  behavior="desktop" bordered>-->
-<!--      &lt;!&ndash; drawer content &ndash;&gt;-->
-<!--    </q-drawer>-->
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      :width="200"
-      :breakpoint="500"
-      bordered
-    >
-      <q-scroll-area class="fit">
-        <q-list>
-
-          <template v-for="(menuItem, index) in menuList" :key="index">
-            <q-item :to="menuItem.path" clickable :active="menuItem.label === 'Core'" v-ripple>
-              <q-item-section avatar>
-                <q-icon :name="menuItem.icon" />
-              </q-item-section>
-              <q-item-section>
-                {{ menuItem.label }}
-              </q-item-section>
-            </q-item>
-            <q-separator :key="'sep' + index"  v-if="menuItem.separator" />
-          </template>
-
-        </q-list>
-      </q-scroll-area>
-    </q-drawer>
 
     <q-drawer v-model="rightDrawerOpen" side="right" :width="250" behavior="desktop" bordered>
       <SchedulesCard/>
     </q-drawer>
 
-    <q-page-container class="bg-grey-3">
+    <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import SchedulesCard from 'components/schedules/SchedulesCard.vue'
 import { useUserStore } from 'stores/user_store'
+import { useRouter, useRoute } from 'vue-router'
 
+const router = useRouter()
+const route = useRoute()
 const userStore = useUserStore()
 const rightDrawerOpen = ref(false)
-const leftDrawerOpen = ref(false)
-const menuList = [
+// const leftDrawerOpen = ref(false)
+const pages = [
   {
-    icon: 'mdi-run-fast',
-    label: 'Core',
-    separator: false,
-    path: '/core'
+    icon: 'mdi-sprout',
+    label: 'roots',
+    value: 'roots'
   },
   {
-    icon: 'mdi-gamepad-variant-outline',
-    label: 'Interests',
-    separator: false,
-    path: '/interests'
+    icon: 'mdi-family-tree',
+    label: 'map',
+    value: 'map'
   }
 ]
-const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+const page = ref(route.name || pages[0].value)
+
+watch([page],
+  () => {
+    navigateToPage(page.value)
+  }
+)
 
 const toggleRightDrawer = () => {
   rightDrawerOpen.value = !rightDrawerOpen.value
+}
+
+// const toggleLeftDrawer = () => {
+//   leftDrawerOpen.value = !leftDrawerOpen.value
+// }
+
+const navigateToPage = (value) => {
+  router.push({ name: value })
 }
 
 onMounted(async () => {

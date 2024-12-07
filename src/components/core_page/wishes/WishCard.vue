@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-ml-sm bg-grey-2" flat square :style="{ height: '73vh' }">
+  <q-card class="q-ml-sm" flat square :style="{ height: '73vh' }">
     <q-card-section>
       <div class="row items-center justify-between">
         <div v-if="wish" class="col-md-6 text-h6">

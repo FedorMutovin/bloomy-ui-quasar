@@ -15,11 +15,11 @@
       :label="rootType.name" />
   </q-tabs>
 
-  <q-separator/>
-
   <q-tab-panels v-model="tab">
     <q-tab-panel v-for="rootType in rootTypeStore.root_types" :key="rootType.id" :name="rootType.name" >
-      <component :is="tabsMap[rootType.name]"/>
+      <q-card flat>
+        <component :is="tabsMap[rootType.name]"/>
+      </q-card>
     </q-tab-panel>
   </q-tab-panels>
 </template>

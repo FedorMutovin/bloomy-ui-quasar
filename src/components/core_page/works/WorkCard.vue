@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-ma-sm" >
+  <q-card flat class="q-ma-sm" >
     <div v-if="workStore.works && workStore.works.length > 0">
       <q-item v-for="work in workStore.works"
               :key="work.id"

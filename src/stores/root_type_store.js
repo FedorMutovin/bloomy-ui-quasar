@@ -11,7 +11,7 @@ export const useRootTypeStore = defineStore('RootTypeStore', {
       {
         id: 2,
         name: 'goal',
-        icon: 'mdi-sprout-outline'
+        icon: 'mdi-bee-flower'
       },
       {
         id: 3,

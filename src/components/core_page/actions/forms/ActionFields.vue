@@ -36,22 +36,22 @@ import { onMounted, ref, watch } from 'vue'
 import DateTimePicker from 'components/forms/DateTimePicker.vue'
 import { getFormattedDate, getUTCDate } from 'src/utils/formattedDate'
 
-const emit = defineEmits(['updateLocalEvent'])
+const emit = defineEmits(['updateLocalRoot'])
 const name = ref(null)
 const description = ref(null)
 const initiatedAt = ref(getFormattedDate())
 
 onMounted(() => {
-  updateLocalEventData()
+  updateLocalRootData()
 })
 
 watch([name, description, initiatedAt],
   () => {
-    updateLocalEventData()
+    updateLocalRootData()
   }
 )
 
-function updateLocalEventData () {
+function updateLocalRootData () {
   const updateData = {}
 
   if (initiatedAt.value) {
@@ -66,6 +66,6 @@ function updateLocalEventData () {
     updateData.description = description.value
   }
 
-  emit('updateLocalEvent', updateData)
+  emit('updateLocalRoot', updateData)
 }
 </script>

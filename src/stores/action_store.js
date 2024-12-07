@@ -20,7 +20,7 @@ export const useActionStore = defineStore('ActionStore', {
     },
     async create (data) {
       const params = {
-        event_action: data
+        root_action: data
       }
       const response = await api.post('/api/v1/actions', params)
       return response.data

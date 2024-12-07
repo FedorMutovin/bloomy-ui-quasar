@@ -60,15 +60,15 @@ export default {
       root_details_header: "Let's Define Your Root",
       attributes: {
         start_immediately: 'Start Immediately',
-        schedule: 'Schedule Event',
+        schedule: 'Schedule Root',
         deadline: 'Set Deadline',
         engagement: 'Track Engagement'
       },
       hints: {
-        start_immediately_hint: 'Check this box to start the event right away and set its status to ‘In Progress’.',
-        schedule_hint: 'Check this box to set a scheduled start time for the event.',
-        deadline_hint: 'Check this box to set a deadline time for the event.',
-        engagement_hint: 'Want to know how engaged you are with this event? Enable tracking to find out!'
+        start_immediately_hint: 'Check this box to start the root right away and set its status to ‘In Progress’.',
+        schedule_hint: 'Check this box to set a scheduled start time for the root.',
+        deadline_hint: 'Check this box to set a deadline time for the root.',
+        engagement_hint: 'Want to know how engaged you are with this root? Enable tracking to find out!'
       }
     },
     unite: {
@@ -120,8 +120,8 @@ export default {
       value: 'Engagement Value'
     },
     hints: {
-      name: 'Give your event a name that stands out!',
-      description: 'Add some details to make this event more meaningful.',
+      name: 'Give your root a name that stands out!',
+      description: 'Add some details to make this root more meaningful.',
       priority: 'Priority',
       initiated_at: 'Initiated At',
       reason: 'Add reason'
@@ -140,7 +140,7 @@ export default {
     postponed: 'Postponed'
   },
   messages: {
-    positive: 'Event has been created successfully.',
+    positive: 'Root has been created successfully.',
     unite: {
       positive: 'The roots has been united successfully.'
     }

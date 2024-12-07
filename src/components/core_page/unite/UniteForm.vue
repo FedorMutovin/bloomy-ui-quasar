@@ -56,7 +56,7 @@ import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
 import RootsSelect from 'components/forms/RootsSelect.vue'
 import { ref } from 'vue'
-import { useEventStore } from 'stores/event_store'
+import { useRootStore } from 'stores/root_store'
 
 const props = defineProps({
   rootId: {
@@ -68,7 +68,7 @@ const props = defineProps({
     required: true
   }
 })
-const eventStore = useEventStore()
+const rootStore = useRootStore()
 const $q = useQuasar()
 const { t } = useI18n()
 const loading = ref(false)
@@ -77,7 +77,7 @@ const targetRoot = ref(null)
 const reason = ref(null)
 const emit = defineEmits(['close'])
 const defaultFilter = {
-  event_type: props.rootType
+  root_type: props.rootType
 }
 
 function handleSourceRoot (root) {
@@ -101,7 +101,7 @@ async function submitForm () {
       reason: reason.value
     }
 
-    await eventStore.unite(data)
+    await rootStore.unite(data)
     $q.notify({
       type: 'positive',
       message: t('messages.unite.positive'),

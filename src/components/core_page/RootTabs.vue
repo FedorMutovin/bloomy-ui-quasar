@@ -8,30 +8,30 @@
     align="center"
   >
     <q-tab
-      v-for="eventType in eventTypeStore.event_types"
-      :key="eventType.id"
-      :name="eventType.name"
-      :icon="eventType.icon"
-      :label="eventType.name" />
+      v-for="rootType in rootTypeStore.root_types"
+      :key="rootType.id"
+      :name="rootType.name"
+      :icon="rootType.icon"
+      :label="rootType.name" />
   </q-tabs>
 
   <q-separator/>
 
   <q-tab-panels v-model="tab">
-    <q-tab-panel v-for="eventType in eventTypeStore.event_types" :key="eventType.id" :name="eventType.name" >
-      <component :is="tabsMap[eventType.name]"/>
+    <q-tab-panel v-for="rootType in rootTypeStore.root_types" :key="rootType.id" :name="rootType.name" >
+      <component :is="tabsMap[rootType.name]"/>
     </q-tab-panel>
   </q-tab-panels>
 </template>
 <script setup >
 import { onMounted, ref } from 'vue'
-import { useEventTypeStore } from 'stores/event_type_store'
+import { useRootTypeStore } from 'stores/root_type_store'
 import WishesTab from 'components/core_page/wishes/WishesTab.vue'
 import ActionsTab from 'components/core_page/actions/ActionsTab.vue'
 import TasksTab from 'components/core_page/tasks/TasksTab.vue'
 import GoalsTab from 'components/core_page/goals/GoalsTab.vue'
 import ThoughtsTab from 'components/core_page/thoughts/ThoughtsTab.vue'
-const eventTypeStore = useEventTypeStore()
+const rootTypeStore = useRootTypeStore()
 const tab = ref(null)
 const tabsMap = {
   wish: WishesTab,

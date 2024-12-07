@@ -16,11 +16,11 @@
     <template v-slot:option="scope">
       <q-item v-bind="scope.itemProps">
         <q-item-section avatar>
-          <q-icon :name="eventTypeStore.getIconByEventName(scope.opt.event_type.toLowerCase())" />
+          <q-icon :name="rootTypeStore.getIconByRootName(scope.opt.root_type.toLowerCase())" />
         </q-item-section>
         <q-item-section>
           <q-item-label>{{ scope.opt.name }}</q-item-label>
-          <q-item-label caption>{{ scope.opt.event_type }}</q-item-label>
+          <q-item-label caption>{{ scope.opt.root_type }}</q-item-label>
         </q-item-section>
       </q-item>
     </template>
@@ -36,10 +36,10 @@
 
 <script setup>
 import { onMounted, ref, computed } from 'vue'
-import { useEventStore } from 'stores/event_store'
-import { useEventTypeStore } from 'stores/event_type_store'
-const eventStore = useEventStore()
-const eventTypeStore = useEventTypeStore()
+import { useRootStore } from 'stores/root_store'
+import { useRootTypeStore } from 'stores/root_type_store'
+const rootStore = useRootStore()
+const rootTypeStore = useRootTypeStore()
 
 const props = defineProps({
   rootId: {
@@ -72,26 +72,26 @@ function emitSelectedRoot (newRoot) {
 function filterFn (val, update) {
   if (val === '') {
     update(() => {
-      options.value = eventStore.events
+      options.value = rootStore.roots
     })
     return
   }
 
   update(() => {
     const needle = val.toLowerCase()
-    options.value = eventStore.events.filter(event => event.name.toLowerCase().includes(needle))
+    options.value = rootStore.roots.filter(root => root.name.toLowerCase().includes(needle))
   })
 }
 
 const displayValue = computed(() => {
-  return root.value ? `${root.value.event_type}: ${root.value.name}` : ''
+  return root.value ? `${root.value.root_type}: ${root.value.name}` : ''
 })
 
 onMounted(async () => {
-  await eventStore.getForUser()
+  await rootStore.getForUser()
   if (props.rootId) {
-    const selectedEvent = eventStore.events.find(ev => ev.id === props.rootId)
-    root.value = selectedEvent || null
+    const selectedRoot = rootStore.roots.find(ev => ev.id === props.rootId)
+    root.value = selectedRoot || null
     emit('update:selected-root', root.value)
   }
 })

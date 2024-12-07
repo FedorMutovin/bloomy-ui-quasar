@@ -1,6 +1,6 @@
 <template>
-  <EventListCard
-    :icon="eventTypeStore.getIconByEventName('Thought')"
+  <RootListCard
+    :icon="rootTypeStore.getIconByRootName('Thought')"
     resource="thoughts"
     :items="thoughtStore.thoughts"
     @item-selected="handleItemSelected"
@@ -14,17 +14,17 @@
     <template #form="{ close }">
       <ThoughtForm @close="close" />
     </template>
-  </EventListCard>
+  </RootListCard>
 </template>
 
 <script setup>
 import { useThoughtStore } from 'stores/thought_store'
-import { useEventTypeStore } from 'stores/event_type_store'
-import EventListCard from 'components/EventListCard.vue'
+import { useRootTypeStore } from 'stores/root_type_store'
+import RootListCard from 'components/RootListCard.vue'
 import ThoughtForm from 'components/core_page/thoughts/ThoughtForm.vue'
 
 const thoughtStore = useThoughtStore()
-const eventTypeStore = useEventTypeStore()
+const rootTypeStore = useRootTypeStore()
 
 const emit = defineEmits(['item-selected'])
 

@@ -76,15 +76,8 @@ import DateTimePicker from 'components/forms/DateTimePicker.vue'
 import EngagementSelect from 'components/engagements/EngagementSelect.vue'
 import { useEngagementStore } from 'stores/engagement_store'
 
-defineProps({
-  labelEvent: {
-    type: Object,
-    default: () => ({})
-  }
-})
-
 const engagementStore = useEngagementStore()
-const emit = defineEmits(['updateLocalEvent'])
+const emit = defineEmits(['updateLocalRoot'])
 
 const startImmediately = ref(true)
 const deadline = ref(false)
@@ -97,17 +90,17 @@ const initiatedAt = ref(getFormattedDate())
 const localPriority = ref(4)
 
 onMounted(() => {
-  updateLocalEventData()
+  updateLocalRootData()
 })
 
 watch([startImmediately, deadline, deadlineAt, engagement,
   selectedEngagementValue, initiatedAt, name, description, localPriority],
 () => {
-  updateLocalEventData()
+  updateLocalRootData()
 }
 )
 
-function updateLocalEventData () {
+function updateLocalRootData () {
   const updateData = {}
   updateData.status = 'pending'
   if (initiatedAt.value) {
@@ -140,12 +133,12 @@ function updateLocalEventData () {
     updateData.engagement_changes.value = selectedEngagementValue.value.value
   }
 
-  emit('updateLocalEvent', updateData)
+  emit('updateLocalRoot', updateData)
 }
 
 function handlePriority (priority) {
   localPriority.value = priority
-  updateLocalEventData()
+  updateLocalRootData()
 }
 
 </script>

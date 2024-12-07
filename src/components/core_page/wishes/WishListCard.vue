@@ -1,6 +1,6 @@
 <template>
-  <EventListCard
-    :icon="eventTypeStore.getIconByEventName('wish')"
+  <RootListCard
+    :icon="rootTypeStore.getIconByRootName('wish')"
     resource="wishes"
     :items="wishStore.wishes"
     @item-selected="handleItemSelected"
@@ -31,17 +31,17 @@
     <template #form="{ close }">
       <WishForm @close="close" />
     </template>
-  </EventListCard>
+  </RootListCard>
 </template>
 
 <script setup>
 import { useWishStore } from 'stores/wish_store'
-import { useEventTypeStore } from 'stores/event_type_store'
-import EventListCard from 'components/EventListCard.vue'
+import { useRootTypeStore } from 'stores/root_type_store'
+import RootListCard from 'components/RootListCard.vue'
 import WishForm from 'components/core_page/wishes/WishForm.vue'
 
 const wishStore = useWishStore()
-const eventTypeStore = useEventTypeStore()
+const rootTypeStore = useRootTypeStore()
 
 const emit = defineEmits(['item-selected'])
 

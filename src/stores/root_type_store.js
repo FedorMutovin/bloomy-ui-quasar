@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 
-export const useEventTypeStore = defineStore('EventTypeStore', {
+export const useRootTypeStore = defineStore('RootTypeStore', {
   state: () => ({
-    event_types: [
+    root_types: [
       {
         id: 1,
         name: 'wish',
@@ -32,15 +32,15 @@ export const useEventTypeStore = defineStore('EventTypeStore', {
   }),
 
   getters: {
-    getIconByEventName: (state) => (eventName) => {
-      const eventType = state.event_types.find(type => type.name === eventName)
-      return eventType ? eventType.icon : null
+    getIconByRootName: (state) => (rootName) => {
+      const rootType = state.root_types.find(type => type.name === rootName)
+      return rootType ? rootType.icon : null
     },
-    eventNames: (state) => {
-      return state.event_types.map(type => type.name)
+    rootNames: (state) => {
+      return state.root_types.map(type => type.name)
     },
-    getEventTypeByName: (state) => (eventName) => {
-      return state.event_types.find(type => type.name === eventName) || null
+    getRootTypeByName: (state) => (rootName) => {
+      return state.root_types.find(type => type.name === rootName) || null
     }
   }
 })

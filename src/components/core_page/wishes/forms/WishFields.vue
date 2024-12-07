@@ -43,7 +43,7 @@ import DateTimePicker from 'components/forms/DateTimePicker.vue'
 import { getFormattedDate, getUTCDate } from 'src/utils/formattedDate'
 import PriorityRating from 'components/forms/PriorityRating.vue'
 
-const emit = defineEmits(['updateLocalEvent'])
+const emit = defineEmits(['updateLocalRoot'])
 const name = ref(null)
 const description = ref(null)
 const initiatedAt = ref(getFormattedDate())
@@ -51,20 +51,20 @@ const localPriority = ref(4)
 
 function handlePriority (priority) {
   localPriority.value = priority
-  updateLocalEventData()
+  updateLocalRootData()
 }
 
 onMounted(() => {
-  updateLocalEventData()
+  updateLocalRootData()
 })
 
 watch([name, description, initiatedAt],
   () => {
-    updateLocalEventData()
+    updateLocalRootData()
   }
 )
 
-function updateLocalEventData () {
+function updateLocalRootData () {
   const updateData = {}
 
   if (initiatedAt.value) {
@@ -83,6 +83,6 @@ function updateLocalEventData () {
     updateData.priority = localPriority.value
   }
 
-  emit('updateLocalEvent', updateData)
+  emit('updateLocalRoot', updateData)
 }
 </script>

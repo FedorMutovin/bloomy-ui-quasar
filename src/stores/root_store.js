@@ -1,16 +1,16 @@
 import { defineStore } from 'pinia'
 import { api } from 'boot/axios'
 
-export const useEventStore = defineStore('EventStore', {
+export const useRootStore = defineStore('RootStore', {
   state: () => {
     return {
-      events: []
+      roots: []
     }
   },
   actions: {
     async getForUser () {
-      const response = await api.get('/api/v1/events')
-      this.events = response.data
+      const response = await api.get('/api/v1/roots')
+      this.roots = response.data
       return response
     },
     async unite (data) {

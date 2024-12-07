@@ -1,6 +1,6 @@
 <template>
-  <EventListCard
-    :icon="eventTypeStore.getIconByEventName('Task')"
+  <RootListCard
+    :icon="rootTypeStore.getIconByRootName('Task')"
     resource="tasks"
     :items="taskStore.tasks"
     @item-selected="handleItemSelected"
@@ -34,17 +34,17 @@
     <template #form="{ close }">
       <TaskForm @close="close" />
     </template>
-  </EventListCard>
+  </RootListCard>
 </template>
 
 <script setup>
 import { useTaskStore } from 'stores/task_store'
-import EventListCard from 'components/EventListCard.vue'
+import RootListCard from 'components/RootListCard.vue'
 import TaskForm from 'components/core_page/tasks/TaskForm.vue'
-import { useEventTypeStore } from 'stores/event_type_store'
+import { useRootTypeStore } from 'stores/root_type_store'
 import EngagementForm from 'components/EngagementForm.vue'
 
-const eventTypeStore = useEventTypeStore()
+const rootTypeStore = useRootTypeStore()
 const taskStore = useTaskStore()
 
 const emit = defineEmits(['item-selected'])

@@ -4,8 +4,8 @@
    @submit="submitForm"
    :loading="loading"
    :header="$t(`forms.wishes.activate.header`)"
-   :show-actions="localEventType != null"
-   :scroll-height="localEventType != null ? '500px' : '250px'"
+   :show-actions="localRootType != null"
+   :scroll-height="localRootType != null ? '500px' : '250px'"
  >
    <template #form-fields>
      <q-card-section class="row">
@@ -19,15 +19,15 @@
      </q-card-section>
 
      <q-card-section class="row">
-       <EventTypeSelect class="col-12 col-md-7" @update:selected-event="handleSelectedType"/>
+       <RootTypeSelect class="col-12 col-md-7" @update:selected-root="handleSelectedType"/>
      </q-card-section>
 
-     <div v-if="localEventType">
+     <div v-if="localRootType">
        <q-separator spaced inset />
 
        <component
-         :is="formFieldsComponentMap[localEventType]"
-         @updateLocalEvent="updateLocalEvent"
+         :is="formFieldsComponentMap[localRootType]"
+         @updateLocalRoot="updateLocalRoot"
        />
      </div>
    </template>
@@ -38,7 +38,7 @@ import { reactive, ref } from 'vue'
 import { useQuasar } from 'quasar'
 import FormCard from 'components/FormCard.vue'
 import RootsSelect from 'components/forms/RootsSelect.vue'
-import EventTypeSelect from 'components/forms/EventTypeSelect.vue'
+import RootTypeSelect from 'components/forms/RootTypeSelect.vue'
 import GoalFields from 'components/core_page/goals/forms/GoalFields.vue'
 import TaskFields from 'components/core_page/tasks/forms/TaskFields.vue'
 import { useTaskStore } from 'stores/task_store'
@@ -84,20 +84,20 @@ const formFieldsComponentMap = {
 }
 
 const fields = ref({})
-const localEventType = ref(null)
+const localRootType = ref(null)
 const loading = ref(false)
 const localRoot = reactive({})
 
 function handleSelectedRoot (root) {
-  localRoot.trigger = root
+  localRoot.origin_root = root
 }
 
 function handleSelectedType (type) {
-  localEventType.value = type
+  localRootType.value = type
   fields.value = {}
 }
 
-function updateLocalEvent (newFields) {
+function updateLocalRoot (newFields) {
   fields.value = newFields
 }
 
@@ -112,7 +112,7 @@ async function submitForm () {
       Object.assign(localRoot, fields.value)
     }
 
-    const store = formStoresMap[localEventType.value]
+    const store = formStoresMap[localRootType.value]
 
     await store.create(localRoot)
     $q.notify({

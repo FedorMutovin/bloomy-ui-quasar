@@ -1,6 +1,6 @@
 <template>
-  <EventListCard
-    :icon="eventTypeStore.getIconByEventName('goal')"
+  <RootListCard
+    :icon="rootTypeStore.getIconByRootName('goal')"
     resource="goals"
     :items="goalStore.goals"
     @item-selected="handleItemSelected"
@@ -34,17 +34,17 @@
     <template #form="{ close }">
       <GoalForm @close="close" />
     </template>
-  </EventListCard>
+  </RootListCard>
 </template>
 
 <script setup>
 import { useGoalStore } from 'stores/goal_store'
-import EventListCard from 'components/EventListCard.vue'
+import RootListCard from 'components/RootListCard.vue'
 import GoalForm from 'components/core_page/goals/GoalForm.vue'
-import { useEventTypeStore } from 'stores/event_type_store'
+import { useRootTypeStore } from 'stores/root_type_store'
 import EngagementForm from 'components/EngagementForm.vue'
 
-const eventTypeStore = useEventTypeStore()
+const rootTypeStore = useRootTypeStore()
 const goalStore = useGoalStore()
 
 const emit = defineEmits(['item-selected'])

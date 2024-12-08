@@ -27,6 +27,11 @@ export const useRootTypeStore = defineStore('RootTypeStore', {
         id: 5,
         name: 'thought',
         icon: 'mdi-thought-bubble-outline'
+      },
+      {
+        id: 6,
+        name: 'travel',
+        icon: 'mdi-airplane'
       }
     ]
   }),

@@ -44,7 +44,12 @@ export default {
     },
     thoughts: {
       create: {
-        title: 'Create a New Thing'
+        title: 'Create a New Thought'
+      }
+    },
+    travels: {
+      create: {
+        title: 'Create a New Travel'
       }
     },
     create: {
@@ -115,7 +120,10 @@ export default {
     initiated_at: 'Initiated At',
     schedule_at: 'Schedule At',
     deadline_at: 'Deadline Date',
+    start_at: 'Start At',
+    end_at: 'End At',
     reason: 'Reason',
+    destination: 'Destination',
     engagements: {
       value: 'Engagement Value'
     },
@@ -124,7 +132,8 @@ export default {
       description: 'Add some details to make this root more meaningful.',
       priority: 'Priority',
       initiated_at: 'Initiated At',
-      reason: 'Add reason'
+      reason: 'Add reason',
+      destination: 'Add destination for your travel'
     }
   },
   buttons: {

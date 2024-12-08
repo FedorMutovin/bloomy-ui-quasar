@@ -31,6 +31,7 @@ import ActionsTab from 'components/core_page/actions/ActionsTab.vue'
 import TasksTab from 'components/core_page/tasks/TasksTab.vue'
 import GoalsTab from 'components/core_page/goals/GoalsTab.vue'
 import ThoughtsTab from 'components/core_page/thoughts/ThoughtsTab.vue'
+import TravelsTab from 'components/core_page/travels/TravelsTab.vue'
 const rootTypeStore = useRootTypeStore()
 const tab = ref(null)
 const tabsMap = {
@@ -38,7 +39,8 @@ const tabsMap = {
   action: ActionsTab,
   task: TasksTab,
   goal: GoalsTab,
-  thought: ThoughtsTab
+  thought: ThoughtsTab,
+  travel: TravelsTab
 }
 
 onMounted(async () => {
